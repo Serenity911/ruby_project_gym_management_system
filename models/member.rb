@@ -12,9 +12,9 @@ class Members
     # add instructors
   end
 
-  def save()
-    sql = 'INSERT INTO member'
-
-  end
+  # def save()
+  #   sql = 'INSERT INTO member'
+  #
+  # end
 
 end
