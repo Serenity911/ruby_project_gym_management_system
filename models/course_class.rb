@@ -10,6 +10,7 @@ class CourseClass
     @name = options['name']
     @max_capacity = options['max_capacity'].to_i
     @venue_id = options['venue_id'].to_i
+    @membership_level = options['membership_level']
     @members_array = []
     # add date
     # add days of week
@@ -21,11 +22,11 @@ class CourseClass
 
   def save()
     sql = "INSERT INTO course_classes
-          (name, max_capacity, venue_id)
+          (name, max_capacity, venue_id, membership_level)
           VALUES
-          ($1, $2, $3)
+          ($1, $2, $3, $4)
           RETURNING id"
-    values = [@name, @max_capacity, @venue_id]
+    values = [@name, @max_capacity, @venue_id, @membership_level]
     @id = SqlRunner.run( sql, values ).first['id'].to_i
   end
 
@@ -64,13 +65,13 @@ class CourseClass
 
   def update()
     sql = "UPDATE course_classes SET (
-    name, max_capacity, venue_id
+    name, max_capacity, venue_id, membership_level
     ) = (
-    $1, $2, $3
+    $1, $2, $3, $4
     )
-    WHERE id = $4
+    WHERE id = $5
     "
-    values = [@name, @max_capacity, @venue_id, @id]
+    values = [@name, @max_capacity, @venue_id, @membership_level, @id]
     SqlRunner.run( sql, values )
   end
 
@@ -92,11 +93,13 @@ class CourseClass
     return  @members_array.length < @max_capacity
   end
 
-
+  def correct_membership?(member)
+    return member.membership == @membership_level
+  end
 
   # add member to class
-  # check if still availability -> call method
-  # check if member is active --> call method member
+  # check if still availability -> call method -V
+  # check if member is active --> call method member -V
   # check if member has the right type of membership --> update course class
   # add member to class members_array
   # increase counter in member --> call method member

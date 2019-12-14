@@ -24,7 +24,7 @@ class Venue
     VALUES
     ($1, $2, $3)
     RETURNING id"
-    values = [@name, @address, @max_number_classes ]
+    values = [@name, @address, @max_number_classes]
     @id = SqlRunner.run( sql, values ).first['id'].to_i
   end
 
