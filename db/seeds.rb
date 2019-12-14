@@ -6,6 +6,7 @@ require_relative( "./sql_runner.rb" )
 
 Venue.delete_all()
 CourseClass.delete_all()
+Member.delete_all()
 
 venue1 = Venue.new({
   "name" => "New Martial Club",

@@ -51,4 +51,5 @@ class CourseClass
     SqlRunner.run( sql, values )
   end
 
+
 end
