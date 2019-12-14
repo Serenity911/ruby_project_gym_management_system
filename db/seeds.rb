@@ -51,6 +51,14 @@ member1 = Member.new({
 
 member1.save()
 
+member2 = Member.new({
+  'name' => 'Paul',
+  'status' => 'active',
+  'membership' => 'Silver'
+  })
+
+member2.save()
+
 binding.pry
 course_class2.add_to_members(member1)
 

@@ -137,10 +137,11 @@ class CourseClass
     return results.map{ |member| Member.new(member)}
   end
 
-  # # is the member booked in a class?
-  # def member_booked_in?(member)
-  #   sql = "SELECT m"
-  # end
+  # is the member booked in a class?
+  def member_booked_in?(member)
+    return !members_list.find{ |x| x.id == member.id }.nil?
+
+  end
 
   #remove member from class
   # is the member in the class?
