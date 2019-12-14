@@ -21,10 +21,10 @@ class CourseClass
 
   def save()
     sql = "INSERT INTO course_classes
-          (name, max_capacity, venue_id, membership_level)
-          VALUES
-          ($1, $2, $3, $4)
-          RETURNING id;"
+    (name, max_capacity, venue_id, membership_level)
+    VALUES
+    ($1, $2, $3, $4)
+    RETURNING id;"
     values = [@name, @max_capacity, @venue_id, @membership_level]
     @id = SqlRunner.run( sql, values ).first['id'].to_i
   end
@@ -56,8 +56,8 @@ class CourseClass
   def self.all_by_venue(id)
     sql = "SELECT * FROM course_classes WHERE venue_id = $1;"
     values = [id]
-    result = SqlRunner.run( sql, values )
-    return result.map{|courseclass| CourseClass.new( courseclass )}
+    results = SqlRunner.run( sql, values )
+    return results.map{ |courseclass| CourseClass.new( courseclass )}
   end
 
   # update one course class
@@ -66,7 +66,7 @@ class CourseClass
     sql = "UPDATE course_classes SET (
     name, max_capacity, venue_id, membership_level
     ) = (
-    $1, $2, $3, $4
+      $1, $2, $3, $4
     )
     WHERE id = $5;
     "
@@ -74,7 +74,7 @@ class CourseClass
     SqlRunner.run( sql, values )
   end
 
-  # find by id
+  # find class by id
   def self.find( id )
     sql = "SELECT * FROM course_classes WHERE id = $1;"
     values = [id]
@@ -104,6 +104,7 @@ class CourseClass
     return member.membership == @membership_level
   end
 
+  # add to class tracker
   def add_to_members(member)
     return if !availability?()
     sql = "INSERT INTO class_trackers
@@ -112,10 +113,10 @@ class CourseClass
     ($1,$2);
     "
     values = [@id, member.id]
-    result = SqlRunner.run( sql, values )
-
+    SqlRunner.run( sql, values )
   end
 
+  # book member in a class
   def book_member(member)
     return if !availability?()
     return if !member.active?()
@@ -123,10 +124,27 @@ class CourseClass
     add_to_members(member)
   end
 
-  # add member to class
-  # X check if still availability -> call method -V
-  # X check if member is active --> call method member -V
-  # X check if member has the right type of membership --> update course class -V
-  # X add member to class members_array - V
+  # all members booked in a class
+  def members_list
+    return if members_count() == 0
+    sql = "SELECT members.* FROM members
+          INNER JOIN class_trackers
+          ON class_trackers.member_id = members.id
+          WHERE class_trackers.course_class_id = $1;
+          "
+    values = [@id]
+    results = SqlRunner.run( sql, values )
+    return results.map{ |member| Member.new(member)}
+  end
+
+  # # is the member booked in a class?
+  # def member_booked_in?(member)
+  #   sql = "SELECT m"
+  # end
+
+  #remove member from class
+  # is the member in the class?
+  # remove_from_members (delete from)
+  # check members_count
 
 end
