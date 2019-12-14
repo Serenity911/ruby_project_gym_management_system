@@ -3,7 +3,7 @@ require_relative( "../db/sql_runner" )
 
 class CourseClass
 
-  attr_reader :id, :name, :max_capacity
+  attr_reader :id, :name, :max_capacity, :venue_id
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
@@ -20,10 +20,10 @@ class CourseClass
 
   def save()
     sql = "INSERT INTO course_classes
-    (name, max_capacity, venue_id)
-    VALUES
-    ($1, $2, $3)
-    RETURNING id"
+          (name, max_capacity, venue_id)
+          VALUES
+          ($1, $2, $3)
+          RETURNING id"
     values = [@name, @max_capacity, @venue_id]
     @id = SqlRunner.run( sql, values ).first['id'].to_i
   end
@@ -48,7 +48,15 @@ class CourseClass
   def destroy()
     sql = "DELETE FROM course_classes WHERE id = $1"
     values = [@id]
-    SqlRunner.run( sql, values )    
+    SqlRunner.run( sql, values )
+  end
+
+  # show all classes for a venue
+  def self.all_by_venue(id)
+    sql = "SELECT * FROM course_classes WHERE venue_id = $1"
+    values = [id]
+    result = SqlRunner.run( sql, values )
+    return result.map{|courseclass| CourseClass.new( courseclass )}
   end
 
 end
