@@ -121,6 +121,7 @@ class CourseClass
     return if !availability?()
     return if !member.active?()
     return if !correct_membership?(member)
+    return if member_booked_in?(member)
     add_to_members(member)
   end
 
