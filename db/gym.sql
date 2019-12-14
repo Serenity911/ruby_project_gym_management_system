@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS class_trackers;
 DROP TABLE IF EXISTS members;
-DROP TABLE IF EXISTS memberships;
+-- DROP TABLE IF EXISTS memberships;
 DROP TABLE IF EXISTS course_classes;
 DROP TABLE IF EXISTS venues;
 
@@ -18,17 +18,19 @@ CREATE TABLE course_classes (
   venue_id INT NOT NULL REFERENCES venues(id) ON DELETE CASCADE
 );
 
-CREATE TABLE memberships (
-  id SERIAL primary key,
-  name VARCHAR(255) NOT NULL,
-  price INT
-);
+-- if time, change to membership_id in members
+-- CREATE TABLE memberships (
+--   id SERIAL primary key,
+--   name VARCHAR(255) NOT NULL,
+--   price INT
+-- );
 
 CREATE TABLE members (
   id SERIAL primary key,
   name VARCHAR(255) NOT NULL,
   status VARCHAR(255) NOT NULL,
-  membership_id INT NOT NULL REFERENCES memberships(id)
+  membership VARCHAR(255) NOT NULL
+  -- membership_id INT NOT NULL REFERENCES memberships(id)
 );
 
 CREATE TABLE class_trackers (

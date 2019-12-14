@@ -5,6 +5,7 @@ require_relative( "../models/course_class.rb" )
 require_relative( "./sql_runner.rb" )
 
 Venue.delete_all()
+CourseClass.delete_all()
 
 venue1 = Venue.new({
   "name" => "New Martial Club",
@@ -14,8 +15,6 @@ venue1 = Venue.new({
 
 venue1.save()
 
-Venue.all()
-
 course_class1 = CourseClass.new({
   'name' => 'Kick defence',
   'max_capacity' => 20,
@@ -23,6 +22,14 @@ course_class1 = CourseClass.new({
   })
 
 course_class1.save()
+
+member1 = Member.new({
+  'name' => 'Jenny',
+  'status' => 'active',
+  'membership' => 'gold'
+  })
+
+member1.save()
 
 binding.pry
 nil
