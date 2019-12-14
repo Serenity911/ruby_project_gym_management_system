@@ -3,7 +3,7 @@
 <ul>
   <% for course_class in @classes %>
   <li>
-    <a href="venues/<%= course_class.venue_id %>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
+    <a href="/venues/<%= course_class.venue_id %>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
   </li>
   <% end %>
 </ul>

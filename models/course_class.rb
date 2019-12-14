@@ -59,4 +59,25 @@ class CourseClass
     return result.map{|courseclass| CourseClass.new( courseclass )}
   end
 
+  # update one course class
+
+  def update()
+    sql = "UPDATE course_classes SET (
+    name, max_capacity, venue_id
+    ) = (
+    $1, $2, $3
+    )
+    WHERE id = $4
+    "
+    values = [@name, @max_capacity, @venue_id, @id]
+    SqlRunner.run( sql, values )
+  end
+
+  # find by id
+  def self.find( id )
+    sql = " SELECT * FROM course_classes WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run( sql, values )
+    return CourseClass.new( result.first )
+  end
 end
