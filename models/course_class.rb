@@ -105,7 +105,7 @@ class CourseClass
   end
 
   # add to class tracker
-  def add_to_members(member)
+  def add_member(member)
     return if !availability?()
     sql = "INSERT INTO class_trackers
     (course_class_id, member_id)
@@ -116,23 +116,31 @@ class CourseClass
     SqlRunner.run( sql, values )
   end
 
+  #remove from class class_tracker
+  def remove_member(member)
+    return if !member_booked_in?(member)
+    sql = "DELETE FROM class_trackers WHERE member_id = $1 AND course_class_id = $2"
+    values = [member.id, @id]
+    SqlRunner.run( sql, values )
+  end
+
   # book member in a class
   def book_member(member)
     return if !availability?()
     return if !member.active?()
     return if !correct_membership?(member)
     return if member_booked_in?(member)
-    add_to_members(member)
+    add_member(member)
   end
 
   # all members booked in a class
   def members_list
-    return if members_count() == 0
+    return if members_count() == nil
     sql = "SELECT members.* FROM members
-          INNER JOIN class_trackers
-          ON class_trackers.member_id = members.id
-          WHERE class_trackers.course_class_id = $1;
-          "
+    INNER JOIN class_trackers
+    ON class_trackers.member_id = members.id
+    WHERE class_trackers.course_class_id = $1;
+    "
     values = [@id]
     results = SqlRunner.run( sql, values )
     return results.map{ |member| Member.new(member)}
@@ -143,10 +151,5 @@ class CourseClass
     return !members_list.find{ |x| x.id == member.id }.nil?
 
   end
-
-  #remove member from class
-  # is the member in the class?
-  # remove_from_members (delete from)
-  # check members_count
 
 end
