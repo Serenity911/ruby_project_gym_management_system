@@ -73,4 +73,9 @@ class Member
     return Member.new( result.first )
   end
 
+  # # check if member is active
+  # def method_name
+  #
+  # end
+
 end

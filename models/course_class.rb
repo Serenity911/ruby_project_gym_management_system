@@ -8,8 +8,9 @@ class CourseClass
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @name = options['name']
-    @max_capacity = options['max_capacity']
-    @venue_id = options['venue_id']
+    @max_capacity = options['max_capacity'].to_i
+    @venue_id = options['venue_id'].to_i
+    @members_array = []
     # add date
     # add days of week
     # add instructors
@@ -85,5 +86,19 @@ class CourseClass
   def venue_name()
     Venue.find(@venue_id).name()
   end
+
+  # check if still availability
+  def availability?
+    return  @members_array.length < @max_capacity
+  end
+
+
+
+  # add member to class
+  # check if still availability -> call method
+  # check if member is active --> call method member
+  # check if member has the right type of membership --> update course class
+  # add member to class members_array
+  # increase counter in member --> call method member
 
 end
