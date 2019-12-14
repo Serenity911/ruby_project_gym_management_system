@@ -80,4 +80,10 @@ class CourseClass
     result = SqlRunner.run( sql, values )
     return CourseClass.new( result.first )
   end
+
+  # get venue name
+  def venue_name()
+    Venue.find(@venue_id).name()
+  end
+
 end

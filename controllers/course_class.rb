@@ -9,6 +9,6 @@ get '/venues/:venue_id/course_c' do
 end
 
 get '/venues/:venue_id/course_c/:course_id' do
-  @class = CourseClass.find(params[:venue_id])
+  @class = CourseClass.find(params[:course_id])
   erb(:"course_c/show")
 end
