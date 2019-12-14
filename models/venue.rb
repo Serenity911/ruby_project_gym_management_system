@@ -1,4 +1,4 @@
-require_relative( " ../db/sql_runner" )
+require_relative( "../db/sql_runner" )
 
 class Venue
 
@@ -22,9 +22,18 @@ class Venue
     ($1, $2, $3)
     RETURNING id"
     values = [@name, @address, @max_number_classes ]
-    @id = SqlRunner.run( sql, runner ).first['id'].to_i
+    @id = SqlRunner.run( sql, values ).first['id'].to_i
   end
 
+  # def self.all()
+  #   sql = "SELECT * FROM venues"
+  #
+  # end
+
+  def self.delete_all()
+    sql = "DELETE FROM venues"
+    SqlRunner.run( sql )
+  end
 
 # #create a class
 #

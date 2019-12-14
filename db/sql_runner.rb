@@ -12,6 +12,6 @@ class SqlRunner
       db.close() if db != nil
     end
     return result
-
+  end
 
 end

@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS class_tracker;
+DROP TABLE IF EXISTS class_trackers;
 DROP TABLE IF EXISTS members;
 DROP TABLE IF EXISTS memberships;
 DROP TABLE IF EXISTS course_classes;
@@ -31,7 +31,7 @@ CREATE TABLE members (
   membership_id INT NOT NULL REFERENCES memberships(id)
 );
 
-CREATE TABLE class_tracker (
+CREATE TABLE class_trackers (
   id SERIAL primary key,
   course_class_id INT NOT NULL REFERENCES course_classes(id) ON DELETE CASCADE,
   member_id INT NOT NULL REFERENCES members(id) ON DELETE CASCADE
