@@ -75,7 +75,7 @@ class Member
 
   # check if member is active
   def active?
-    @staus == "active"
+    @status == "active"
   end
 
 
