@@ -95,18 +95,17 @@ class CourseClass
 
   end
 
-  # # check if still availability
-  # def availability?
-  #
-  #
-  #   return  result < @max_capacity
-  # end
+  # check if still availability
+  def availability?
+    return members_count() < @max_capacity
+  end
 
-  # def correct_membership?(member)
-  #   return member.membership == @membership_level
-  # end
+  def correct_membership?(member)
+    return member.membership == @membership_level
+  end
 
   def add_to_members(member)
+    return if !availability?()
     sql = "INSERT INTO class_trackers
     (course_class_id, member_id)
     values
@@ -117,20 +116,17 @@ class CourseClass
 
   end
 
-  # def book_member(member)
-  #   return availability? == false
-  #   return member.active? == false
-  #   return correct_membership? == false
-  #   add_to_members()
-
-
-  # end
+  def book_member(member)
+    return if !availability?()
+    return if !member.active?()
+    return if !correct_membership?(member)
+    add_to_members(member)
+  end
 
   # add member to class
-  # check if still availability -> call method -V
-  # check if member is active --> call method member -V
-  # check if member has the right type of membership --> update course class -V
-  # add member to class members_array - V
-  # increase counter in member --> call method member
+  # X check if still availability -> call method -V
+  # X check if member is active --> call method member -V
+  # X check if member has the right type of membership --> update course class -V
+  # X add member to class members_array - V
 
 end

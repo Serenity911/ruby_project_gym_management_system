@@ -52,4 +52,6 @@ member1 = Member.new({
 member1.save()
 
 binding.pry
+course_class2.add_to_members(member1)
+
 nil
