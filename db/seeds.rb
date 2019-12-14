@@ -12,9 +12,17 @@ venue1 = Venue.new({
   "max_number_classes" => "2"
 })
 
-venue1.save
+venue1.save()
 
 Venue.all()
+
+course_class1 = CourseClass.new({
+  'name' => 'Kick defence',
+  'max_capacity' => 20,
+  'venue_id' => venue1.id
+  })
+
+course_class1.save()
 
 binding.pry
 nil
