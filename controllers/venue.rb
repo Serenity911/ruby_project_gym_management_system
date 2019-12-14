@@ -9,5 +9,5 @@ get '/venues' do
 end
 
 get '/venues/:id/dashboard' do
-  erb(:"venues/dashboard")
+  erb(:"venues/show")
 end

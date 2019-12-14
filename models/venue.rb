@@ -2,7 +2,8 @@ require_relative( "../db/sql_runner" )
 
 class Venue
 
-  attr_reader :id, :name, :address, :max_number_classes, :course_classes 
+  attr_reader :id
+  attr_accessor :name, :address, :max_number_classes, :course_classes
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
@@ -50,11 +51,24 @@ class Venue
     SqlRunner.run( sql, values )
   end
 
-# #create a class
-#
-#   def self.add_course_class()
-#     sql
-#
-#   end
+  def update()
+    sql = "UPDATE venues SET (
+    name, address, max_number_classes
+    ) = (
+    $1, $2, $3
+    )
+    WHERE id = $4
+    "
+    values = [@name, @address, @max_number_classes, @id]
+    SqlRunner.run( sql, values )
+  end
+
+  # find by id
+  def self.find( id )
+    sql = " SELECT * FROM venues WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run( sql, values )
+    return Venue.new( result.first )
+  end
 
 end
