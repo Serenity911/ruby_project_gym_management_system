@@ -25,14 +25,21 @@ class Venue
     @id = SqlRunner.run( sql, values ).first['id'].to_i
   end
 
-  # def self.all()
-  #   sql = "SELECT * FROM venues"
-  #
-  # end
-
   def self.delete_all()
     sql = "DELETE FROM venues"
     SqlRunner.run( sql )
+  end
+
+  def self.all()
+    sql = "SELECT * FROM venues"
+    result = SqlRunner.run( sql )
+    return result.map{|venue| Venue.new( venue )}
+  end
+
+  def destroy()
+    sql = "DELETE FROM venues WHERE id = $1"
+    values = [@id]
+    SqlRunner.run( sql, values )
   end
 
 # #create a class

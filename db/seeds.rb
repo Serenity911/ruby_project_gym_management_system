@@ -13,5 +13,8 @@ venue1 = Venue.new({
 })
 
 venue1.save
-# binding.pry
-# nil
+
+Venue.all()
+
+binding.pry
+nil
