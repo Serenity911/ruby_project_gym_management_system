@@ -1,0 +1,9 @@
+<h1>Select a venue:</h1>
+
+<ul>
+  <% for venue in @venues %>
+  <li>
+    <a href="venues/<%= venue.id %>/dashboard"><%= venue.name %></a>
+  </li>
+  <% end %>
+</ul>

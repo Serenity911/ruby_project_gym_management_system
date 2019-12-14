@@ -48,8 +48,7 @@ class CourseClass
   def destroy()
     sql = "DELETE FROM course_classes WHERE id = $1"
     values = [@id]
-    SqlRunner.run( sql, values )
+    SqlRunner.run( sql, values )    
   end
-
 
 end
