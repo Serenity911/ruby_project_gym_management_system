@@ -163,5 +163,14 @@ class CourseClass
     return empty_classes
   end
 
+  def self.full_classes()
+    full_classes = []
+    for courseclass in CourseClass.all()
+      if courseclass.members_count() == courseclass.max_capacity
+        full_classes << courseclass
+      end
+    end
+    return full_classes
+  end
 
 end
