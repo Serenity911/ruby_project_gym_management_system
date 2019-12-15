@@ -39,8 +39,8 @@ class Member
 
   def self.all()
     sql = "SELECT * FROM members"
-    result = SqlRunner.run( sql )
-    return result.map{|member| Member.new( member )}
+    results = SqlRunner.run( sql )
+    return results.map{|member| Member.new( member )}
   end
 
   # delete one member
@@ -78,5 +78,14 @@ class Member
     @status == "active"
   end
 
+  def attendance()
+    sql = "SELECT course_classes.* FROM course_classes
+    INNER JOIN class_trackers
+    ON class_trackers.course_class_id = course_classes.id
+    WHERE class_trackers.member_id = $1"
+    values = [@id]
+    results = SqlRunner.run( sql, values )
+    return results.map{ |courseclass| CourseClass.new(courseclass)}
+  end
 
 end

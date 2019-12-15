@@ -42,6 +42,14 @@ course_class2 = CourseClass.new({
 
 course_class2.save()
 
+course_class3 = CourseClass.new({
+  'name' => 'Awareness Seminar',
+  'max_capacity' => 3,
+  'venue_id' => venue1.id,
+  'membership_level' => "Gold"
+  })
+
+course_class3.save()
 
 member1 = Member.new({
   'name' => 'Jenny',
