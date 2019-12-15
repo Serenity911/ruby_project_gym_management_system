@@ -153,9 +153,9 @@ class CourseClass
   end
 
   # get empty classes
-  def self.empty_classes()
+  def self.empty_classes(venueid)
     empty_classes = []
-    for courseclass in CourseClass.all()
+    for courseclass in CourseClass.all_by_venue(venueid)
       if courseclass.members_count() == 0
         empty_classes << courseclass
       end
@@ -163,9 +163,9 @@ class CourseClass
     return empty_classes
   end
 
-  def self.full_classes()
+  def self.full_classes(venueid)
     full_classes = []
-    for courseclass in CourseClass.all()
+    for courseclass in CourseClass.all_by_venue(venueid)
       if courseclass.members_count() == courseclass.max_capacity
         full_classes << courseclass
       end

@@ -5,6 +5,8 @@ also_reload( '../models/*' )
 
 get '/venues/:venue_id/course_c' do
   @classes = CourseClass.all_by_venue(params[:venue_id])
+  @empty_classes = CourseClass.empty_classes(params[:venue_id])
+  @full_classes = CourseClass.full_classes(params[:venue_id])
   erb(:"course_c/index")
 end
 
