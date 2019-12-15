@@ -100,6 +100,7 @@ class CourseClass
     return members_count() < @max_capacity
   end
 
+  # check membership
   def correct_membership?(member)
     return member.membership == @membership_level
   end
@@ -149,7 +150,18 @@ class CourseClass
   # is the member booked in a class?
   def member_booked_in?(member)
     return !members_list.find{ |x| x.id == member.id }.nil?
-
   end
+
+  # get empty classes
+  def self.empty_classes()
+    empty_classes = []
+    for courseclass in CourseClass.all()
+      if courseclass.members_count() == 0
+        empty_classes << courseclass
+      end
+    end
+    return empty_classes
+  end
+
 
 end
