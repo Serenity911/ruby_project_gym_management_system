@@ -1,0 +1,28 @@
+<h1>Here are all the classes for this venue</h1>
+
+<ul>
+  <% for course_class in @classes %>
+  <li>
+    <a href="/venues/<%= course_class.venue_id %>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
+  </li>
+  <% end %>
+</ul>
+
+
+  <h2>Hey, some classes look empty..</h2>
+  <ul>
+    <% for course_class in @empty_classes %>
+    <li>
+      <a href="/venues/<%= course_class.venue_id %>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
+    </li>
+    <% end %>
+  </ul>
+
+<h2>Yuppie, some classes are full!</h2>
+<ul>
+  <% for course_class in @full_classes %>
+  <li>
+    <a href="/venues/<%= course_class.venue_id %>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
+  </li>
+  <% end %>
+</ul>

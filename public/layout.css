@@ -1,0 +1,31 @@
+
+body {
+background-color:#cdd9ec ;
+/* DELETE BELOW */
+margin: 0;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: 2.5vw;
+  border: solid thin #2b3752;
+}
+
+.menu_item {
+  border-style: solid;
+  border-color: #2b3752;
+  border-width: 1%;
+  padding: 1rem;
+}
+
+.menu_item:hover {
+  background-color: #2b3752;
+  color: #e3f1ff;
+}
+
+/* or div second child of body */
+.main_section {
+  margin: 0 5em;
+}

@@ -3,3 +3,22 @@
 <h1>Class Name: <%= @class.name %></h1>
 <h2>Max Capacity: <%= @class.max_capacity %></h2>
 <h2>Venue Name: <%= @class.venue_name %></h2>
+<h2>Type of membership needed: <%= @class.membership_level %></h2>
+
+
+<!-- book a member! -->
+<form action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>" method="post">
+  <select name="member_id">
+    <% for member in @members %>
+        <option value="<%= member.id %>"><%= member.name %></option>
+    <% end %>
+  </select>
+  <input class="" type='submit' value="Book!">
+</form>
+
+<!-- print all members signed in -->
+<ul>
+<% for member in @members_signed_in %>
+    <li><%= member.name() %></li>
+<% end %>
+</ul>

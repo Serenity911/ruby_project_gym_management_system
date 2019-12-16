@@ -8,7 +8,7 @@ get '/venues/?' do
   erb(:"venues/index")
 end
 
-get '/venues/:id/course_c' do
+get '/venues/:id/?' do
   @venue = Venue.find(params[:id])
   erb(:"venues/show")
 end
