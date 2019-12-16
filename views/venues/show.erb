@@ -1,6 +1,11 @@
-<p>Here is the dashboard for this venue</p>
+<!-- <p>Here is the dashboard for this venue</p> -->
 <h1><%= @venue.name %></h1>
 <a href="/venues/<%= @venue.id %>/course_c">See classes</a>
 
 <!-- MVP: venue will show the classes of the venue
 EXT: venue show will show the dashboard of the venue -->
+
+<!-- delete this venue -->
+  <form  action="/venues/<%= @venue.id %>/delete" method="get">
+    <input type="submit" value="Delete" >
+  </form>

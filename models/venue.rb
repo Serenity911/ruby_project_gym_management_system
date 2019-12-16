@@ -71,4 +71,6 @@ class Venue
     return Venue.new( result.first )
   end
 
+# find how many classes it has
+
 end

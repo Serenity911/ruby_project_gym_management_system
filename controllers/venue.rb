@@ -30,3 +30,17 @@ post '/venues/' do
   venue.save()
   redirect to("/venues/#{venue.id}")
 end
+
+# delete this venue
+
+get '/venues/:id/delete' do
+  @venue = Venue.find(params[:id])
+  erb(:"venues/delete")
+end
+
+# delete a class
+post '/venues/:id/delete' do
+  @venue = Venue.find(params[:id])
+  @venue.destroy()
+  redirect to("/venues/?")
+end

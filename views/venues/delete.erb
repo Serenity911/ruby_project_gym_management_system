@@ -1,0 +1,5 @@
+<p>Are you sure you want to delete the venue <%= @venue.name %>?</p>
+
+<form class="" action="/venues/<%= @venue.id %>/delete" method="post">
+  <input type="submit" value="Delete this venue!" >
+</form>
