@@ -11,6 +11,12 @@ get '/members/?' do
   erb(:"members/index")
 end
 
+# show all members / status
+get '/members/filter/:status' do
+  @status = params['status']
+  @members = Member.all_by_status(@status)
+  erb(:"members/index_status")
+end
 
 # create new member
 # show form
@@ -43,9 +49,16 @@ post '/members/:id' do
   redirect to("/members/#{params['id']}")
 end
 
-# delete >> archive
+# delete >> destroy
 post '/members/:id/delete' do
   @member = Member.find(params['id'])
   @member.destroy()
+  redirect to("members/")
+end
+
+# delete >> archive
+post '/members/:id/archive' do
+  @member = Member.find(params['id'])
+  @member.archive()
   redirect to("members/")
 end

@@ -65,6 +65,15 @@ class Member
     SqlRunner.run( sql, values )
   end
 
+  # archive
+  def archive()
+    sql = "UPDATE members SET status = $1
+    WHERE id = $2
+    "
+    values = ["archived", @id]
+    SqlRunner.run( sql, values )
+  end
+
   # find by id
   def self.find( id )
     sql = " SELECT * FROM members WHERE id = $1"
@@ -87,5 +96,16 @@ class Member
     results = SqlRunner.run( sql, values )
     return results.map{ |courseclass| CourseClass.new(courseclass)}
   end
+
+  # show all for a specific status
+
+  def self.all_by_status(status)
+    sql = "SELECT * FROM members WHERE status = $1"
+    values = [status]
+    results = SqlRunner.run( sql, values )
+    return results.map{|member| Member.new( member )}
+
+  end
+
 
 end
