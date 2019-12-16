@@ -138,6 +138,12 @@ class CourseClass
     add_member(member)
   end
 
+  # remove member from a class
+  def cancel_booking(member)
+    return if !member_booked_in?(member)
+    remove_member(member)
+  end
+
   # all members booked in a class
   def members_list
     return if members_count() == nil

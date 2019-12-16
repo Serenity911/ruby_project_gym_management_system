@@ -6,7 +6,7 @@
 
 
 <!-- book a member! -->
-<form action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>" method="post">
+<form action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/book" method="post">
   <select name="member_id">
     <% for member in @members %>
         <option value="<%= member.id %>"><%= member.name %></option>
@@ -23,6 +23,10 @@
   <ul>
   <% for member in @members_signed_in %>
       <li><%= member.name() %></li>
+      <form class="" action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/cancel_booking/<%= member.id %>" method="post">
+        <input type="submit" value="Remove this member">
+      </form>
+
   <% end %>
   </ul>
   <% end %>

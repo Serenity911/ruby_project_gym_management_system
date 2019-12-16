@@ -38,12 +38,21 @@ get '/venues/:venue_id/course_c/:course_id' do
   @class = CourseClass.find(params[:course_id])
   @members = Member.all_bookable(@class, "active", @class.membership_level)
   @members_signed_in = @class.members_list()
+  # binding.pry
+
   erb(:"course_c/show")
 end
 
 # book a member to a class
-post '/venues/:venue_id/course_c/:course_id' do
+post '/venues/:venue_id/course_c/:course_id/book' do
   CourseClass.find(params[:course_id]).book_member(Member.find(params['member_id']))
+  redirect to("/venues/#{params[:venue_id]}/course_c/#{params[:course_id]}")
+end
+
+# cancel a booking of a member to a class
+post '/venues/:venue_id/course_c/:course_id/cancel_booking/:member_id' do
+  @class = CourseClass.find(params[:course_id])
+  @class.cancel_booking(Member.find(params['member_id']))
   redirect to("/venues/#{params[:venue_id]}/course_c/#{params[:course_id]}")
 end
 
