@@ -31,9 +31,15 @@ get '/members/:id' do
   erb(:"members/show")
 end
 
-
-
-
-# delete >> archive
-
 # edit a member
+get '/members/:id/edit' do
+  @member = Member.find(params['id'])
+  erb(:"members/edit")
+end
+
+# update
+post '/members/:id' do
+  Member.new(params).update
+  redirect to("/members/#{params['id']}")
+end
+# delete >> archive

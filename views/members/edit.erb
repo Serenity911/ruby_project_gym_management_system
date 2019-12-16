@@ -1,0 +1,36 @@
+<h1>Edit member's details:</h1>
+
+<form action="/members/<%= @member.id %>" method="post">
+<label for="name"></label>
+  <input type="text" name="name" id="name" value="<%= @member.name %>">
+  <select name="status">
+
+          <% if @member.status == "active" %>
+            <option value=<%= @member.status %> selected><%= @member.status %></option>
+            <option value= "paused">paused</option>
+            <option value= "archived">archived</option>
+            <% elsif @member.status == "paused"%>
+            <option value= "active">active</option>
+            <option value=<%= @member.status %> selected><%= @member.status %></option>
+            <option value= "archived">archived</option>
+            <% else%>
+            <option value= "active">active</option>
+            <option value= "paused">paused</option>
+            <option value="archived" selected>archived</option>
+          <% end %>
+  </select>
+
+  <select name="membership">
+    <% if @member.membership == "Gold" %>
+      <option value=<%= @member.membership %> selected><%= @member.membership %></option>
+      <option value= "Silver">Silver</option>
+      <% elsif @member.membership == "Silver"%>
+      <option value= "Gold">Gold</option>
+      <option value=<%= @member.membership %> selected><%= @member.membership %></option>
+      <% else%>
+      <option value= "Gold">Gold</option>
+      <option value= "Silver">Silver</option>
+    <% end %>
+  </select>
+  <input class="" type='submit' value="Edit">
+</form>
