@@ -107,5 +107,31 @@ class Member
 
   end
 
+  def self.all_by_membership(status, membership)
+      # sql = "SELECT * FROM members WHERE membership = $1"
+      # values = [membership]
+      # results = SqlRunner.run( sql, values )
+      # return results.map{|member| Member.new( member )}
+      @all_by_status = Member.all_by_status(status)
+      @members_status_membership = []
+      for one in @all_by_status
+        if one.membership == membership
+          @members_status_membership << one
+        end
+      end
+      return @members_status_membership
+  end
+
+  def self.all_bookable(course_class, status, membership)
+      @all_membership = Member.all_by_membership(status, membership)
+      @all_bookable = []
+      for one in @all_membership
+        if course_class.member_booked_in?(one)
+        else
+          @all_bookable << one
+        end
+      end
+      return @all_bookable
+  end
 
 end

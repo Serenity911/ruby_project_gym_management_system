@@ -17,8 +17,9 @@ get '/venues/:venue_id/course_c' do
 end
 
 get '/venues/:venue_id/course_c/:course_id' do
-  @members = Member.all()
   @class = CourseClass.find(params[:course_id])
+  # @members = Member.all()
+  @members = Member.all_bookable(@class, "active", @class.membership_level)
   @members_signed_in = CourseClass.find(params[:course_id]).members_list()
   erb(:"course_c/show")
 end
