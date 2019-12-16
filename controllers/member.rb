@@ -21,7 +21,7 @@ end
 # new member - post
 post '/members' do
   member = Member.new(params)
-  member.save
+  member.save()
   redirect to("members/")
 end
 
@@ -39,7 +39,13 @@ end
 
 # update
 post '/members/:id' do
-  Member.new(params).update
+  Member.new(params).update()
   redirect to("/members/#{params['id']}")
 end
+
 # delete >> archive
+post '/members/:id/delete' do
+  @member = Member.find(params['id'])
+  @member.destroy()
+  redirect to("members/")
+end

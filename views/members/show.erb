@@ -5,3 +5,9 @@
   <li><%= @member.status %></li>
   <li><%= @member.membership %></li>
 </ul>
+
+<a href="/members/<%= @member.id %>/edit">Edit</a>
+
+<form action="/members/<%= @member.id %>/delete" method="post">
+  <input type="submit"value="Delete">
+</form>
