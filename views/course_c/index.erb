@@ -1,9 +1,14 @@
-<h1>Here are all the classes for this venue</h1>
+<% if @classes == [] %>
+  <h1>No classes..</h1>
+<% else %>
+  <h1>Here are all the classes for all the venues</h1>
 
-<ul>
-  <% for course_class in @classes %>
-  <li>
-    <a href="/venues/<%= course_class.venue_id %>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
-  </li>
-  <% end %>
-</ul>
+  <ul>
+    <% for course_class in @classes %>
+    <li>
+      <a href="/venues/<%= course_class.venue_id %>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
+    </li>
+    <% end %>
+  </ul>
+
+<% end %>

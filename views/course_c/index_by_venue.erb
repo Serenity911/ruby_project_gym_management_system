@@ -1,12 +1,12 @@
 <% if @classes == [] %>
-<h1>No classes..yet. Why not adding some?</h1>
+<h1>No classes..Why not adding some?</h1>
 <% else %>
 <h1>Here are all the classes for this venue</h1>
 
   <ul>
     <% for course_class in @classes %>
     <li>
-      <a href="/venues/<%= @venue_id %>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
+      <a href="/venues/<%= @venue_id%>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
     </li>
     <% end %>
   </ul>
@@ -20,7 +20,7 @@
   <ul>
     <% for course_class in @empty_classes %>
     <li>
-      <a href="/venues/<%= @venue_id %>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
+      <a href="/venues/<%= @venue_id%>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
     </li>
     <% end %>
   </ul>
@@ -34,12 +34,11 @@
   <ul>
     <% for course_class in @full_classes %>
     <li>
-      <a href="/venues/<%= @venue_id %>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
+      <a href="/venues/<%= @venue_id%>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
     </li>
     <% end %>
   </ul>
 <% end %>
 
 
-<!-- this is not working if course_class is nil. find another way -->
 <h2>Create a <a href="/venues/<%= @venue_id %>/course_c/new">NEW</a> one</h2>

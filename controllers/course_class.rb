@@ -38,7 +38,7 @@ end
 get '/venues/:venue_id/course_c/:course_id' do
   @class = CourseClass.find(params[:course_id])
   @members = Member.all_bookable(@class, "active", @class.membership_level)
-  @members_signed_in = CourseClass.find(params[:course_id]).members_list()
+  @members_signed_in = @class.members_list()
   erb(:"course_c/show")
 end
 
@@ -46,4 +46,19 @@ end
 post '/venues/:venue_id/course_c/:course_id' do
   CourseClass.find(params[:course_id]).book_member(Member.find(params['member_id']))
   redirect to("/venues/#{params[:venue_id]}/course_c/#{params[:course_id]}")
+end
+
+# delete a class
+get '/venues/:venue_id/course_c/:course_id/delete' do
+  @class = CourseClass.find(params[:course_id])
+  @members_count = @class.members_count()
+  erb(:"course_c/delete")
+end
+
+# delete a class
+post '/venues/:venue_id/course_c/:course_id/delete' do
+  @class = CourseClass.find(params[:course_id])
+  @members_count = @class.members_count()
+  @class.destroy()
+  redirect to("/venues/#{params[:venue_id]}/course_c")
 end
