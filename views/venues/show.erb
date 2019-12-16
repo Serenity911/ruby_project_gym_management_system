@@ -2,14 +2,22 @@
 <h1><%= @venue.name %></h1>
 <p>There are <%= @class_counter %> classes.</p>
 <p>You can have max <%= @venue.max_number_classes %> classes.</p>
-<p>Is this venue full? <%= @is_full %></p>
+<br>
 
+<% if @venue.is_full %>
+<h2>This venue is full: you cannot create any more classes</h2>
+<p>Maybe it's time to open a new venue?</p>
+<% end %>
+
+<br>
 <a href="/venues/<%= @venue.id %>/course_c">See classes</a>
 
 <!-- MVP: venue will show the classes of the venue
 EXT: venue show will show the dashboard of the venue -->
 
 <!-- delete this venue -->
+<br>
   <form  action="/venues/<%= @venue.id %>/delete" method="get">
     <input type="submit" value="Delete" >
   </form>
+<br>
