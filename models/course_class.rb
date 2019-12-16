@@ -20,6 +20,9 @@ class CourseClass
   # create a course_class
 
   def save()
+    if Venue.find(@venue_id).is_full
+      return
+    else
     sql = "INSERT INTO course_classes
     (name, max_capacity, venue_id, membership_level)
     VALUES
@@ -27,6 +30,7 @@ class CourseClass
     RETURNING id;"
     values = [@name, @max_capacity, @venue_id, @membership_level]
     @id = SqlRunner.run( sql, values ).first['id'].to_i
+    end
   end
 
   # delete all the course_classes
@@ -172,5 +176,6 @@ class CourseClass
     end
     return full_classes
   end
+
 
 end

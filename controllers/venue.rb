@@ -13,12 +13,14 @@ end
 # form for new
 
 get '/venues/new' do
-  # binding.pry
   erb(:"venues/new")
 end
 
 get '/venues/:id/?' do
   @venue = Venue.find(params[:id])
+  @class_counter = @venue.classes_counter()
+  @is_full = @venue.is_full()
+
   erb(:"venues/show")
 end
 
@@ -38,7 +40,7 @@ get '/venues/:id/delete' do
   erb(:"venues/delete")
 end
 
-# delete a class
+# delete a venue
 post '/venues/:id/delete' do
   @venue = Venue.find(params[:id])
   @venue.destroy()

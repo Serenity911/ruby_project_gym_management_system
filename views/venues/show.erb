@@ -1,5 +1,9 @@
 <!-- <p>Here is the dashboard for this venue</p> -->
 <h1><%= @venue.name %></h1>
+<p>There are <%= @class_counter %> classes.</p>
+<p>You can have max <%= @venue.max_number_classes %> classes.</p>
+<p>Is this venue full? <%= @is_full %></p>
+
 <a href="/venues/<%= @venue.id %>/course_c">See classes</a>
 
 <!-- MVP: venue will show the classes of the venue

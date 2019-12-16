@@ -3,14 +3,13 @@ require_relative( "../db/sql_runner" )
 class Venue
 
   attr_reader :id
-  attr_accessor :name, :address, :max_number_classes, :course_classes
+  attr_accessor :name, :address, :max_number_classes
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @address = options['address']
     @max_number_classes = options['max_number_classes'].to_i
-    @course_classes = []
     # add till
   end
 
@@ -72,5 +71,17 @@ class Venue
   end
 
 # find how many classes it has
+  def classes_counter()
+    sql = "SELECT COUNT (*) FROM course_classes WHERE venue_id = $1"
+    values = [@id]
+    result = SqlRunner.run( sql, values )
+    return  result.first['count'].to_i
+  end
+
+# find if full
+
+  def is_full()
+    return classes_counter() == @max_number_classes
+  end
 
 end

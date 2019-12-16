@@ -22,7 +22,6 @@ end
 
 get '/venues/:venue_id/course_c/new' do
   @venue_id = params['venue_id']
-  # binding.pry
   erb(:"course_c/new")
 end
 

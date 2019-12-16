@@ -1,3 +1,5 @@
+
+
 <% if @classes == [] %>
 <h1>No classes..Why not adding some?</h1>
 <% else %>
@@ -40,5 +42,10 @@
   </ul>
 <% end %>
 
-
-<h2>Create a <a href="/venues/<%= @venue_id %>/course_c/new">NEW</a> one</h2>
+<% if Venue.find(@venue_id).is_full %>
+<h2>This venue is full: you cannot create any more classes</h2>
+<p>Maybe it's time to open a new venue?</p>
+<br>
+<% else %>
+  <h2>Create a <a href="/venues/<%= @venue_id %>/course_c/new">NEW</a> one</h2>
+<% end %>
