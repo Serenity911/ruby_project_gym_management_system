@@ -1,0 +1,17 @@
+<h1>Add a new class in <%= Venue.find(@venue_id).name %></h1>
+
+<!-- (name, max_capacity, venue_id, membership_level) -->
+
+<form action="/venues/<%= @venue_id %>/course_c" method="post">
+  <label for="name"></label>
+  <input type="text" name="name" id="name">
+
+  <label for="max_capacity"></label>
+  <input type="text" name="max_capacity" id="max_capacity">
+
+  <select name="membership_level">
+        <option value="Gold">Gold</option>
+        <option value="Silver">Silver</option>
+  </select>
+  <input class="" type='submit' value="Add!">
+</form>

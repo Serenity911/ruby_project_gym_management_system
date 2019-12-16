@@ -9,7 +9,7 @@ class Venue
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @address = options['address']
-    @max_number_classes = options['max_number_classes']
+    @max_number_classes = options['max_number_classes'].to_i
     @course_classes = []
     # add till
   end
