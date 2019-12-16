@@ -1,0 +1,17 @@
+<h1>Add a new member</h1>
+
+
+<form action="/members" method="post">
+<label for="name"></label>
+  <input type="text" name="name" id="name">
+  <select name="status">
+        <option value="active" selected = "selected">active</option>
+        <option value="paused" disabled>paused</option>
+        <option value="archived" disabled>archived</option>
+  </select>
+  <select name="membership">
+        <option value="Gold">Gold</option>
+        <option value="Silver">Silver</option>
+  </select>
+  <input class="" type='submit' value="Add!">
+</form>
