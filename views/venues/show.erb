@@ -1,14 +1,14 @@
 <% content_for :submenu1 do %>
-/venues/?
+/venues/<%= @venue.id %>/edit
 <% end %>
 <% content_for :submenu1text do %>
-Show all
+Edit
 <% end %>
 <% content_for :submenu2 do %>
-/venues/new
+/venues/<%= @venue.id %>/delete
 <% end %>
 <% content_for :submenu2text do %>
-Create New
+Delete
 <% end %>
 
 <!-- <p>Here is the dashboard for this venue</p> -->
@@ -27,7 +27,7 @@ Create New
 
 
 <% if @venue.is_full %>
-<h2>This venue is full: you cannot create any more classes</h2>
+<h2 class="text-alert">This venue is full: you cannot create any more classes</h2>
 <p>Maybe it's time to open a new venue?</p>
 <% end %>
 
@@ -37,9 +37,16 @@ Create New
 <!-- MVP: venue will show the classes of the venue
 EXT: venue show will show the dashboard of the venue -->
 
-<!-- delete this venue -->
-<br>
-<form  action="/venues/<%= @venue.id %>/delete" method="get">
-  <input type="submit" value="Delete" >
-</form>
-<br>
+<!-- see all classes -->
+
+<ul class = "box_of_squares">
+<% for course_c in @classes %>
+  <li class = "square">
+      <a  class="square_main" href=""><%= course_c.name %></a>
+      <div class="square_footer">
+        <a  class="light_text" href="">something</a>
+        <a  class="light_text" href="">something</a>
+      </div>
+  </li>
+<% end %>
+</ul>

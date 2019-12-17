@@ -84,4 +84,18 @@ class Venue
     return classes_counter() == @max_number_classes
   end
 
+
+# get all classes for venue
+  def get_all_classes()
+    sql = "SELECT * FROM venues
+    INNER JOIN course_classes
+    ON  venues.id = course_classes.venue_id
+    WHERE course_classes.venue_id = $1;"
+    values = [@id]
+    result = SqlRunner.run( sql, values )
+    return result.map{|course_c| CourseClass.new( course_c )}
+  end
+
+
+
 end
