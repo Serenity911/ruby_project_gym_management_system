@@ -42,6 +42,7 @@ membership2.save()
 
 course_class1 = CourseClass.new({
   'name' => 'Kick defence',
+  'course_date' => '2019-12-19',
   'max_capacity' => 20,
   'venue_id' => venue1.id,
   'membership_id' => membership2.id
@@ -51,6 +52,7 @@ course_class1.save()
 
 course_class2 = CourseClass.new({
   'name' => 'Punch defence',
+  'course_date' => '2019-12-20',
   'max_capacity' => 26,
   'venue_id' => venue1.id,
   'membership_id' => membership1.id
@@ -60,6 +62,7 @@ course_class2.save()
 
 course_class3 = CourseClass.new({
   'name' => 'Awareness Seminar',
+  'course_date' => '2019-12-21',
   'max_capacity' => 3,
   'venue_id' => venue1.id,
   'membership_id' => membership1.id

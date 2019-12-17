@@ -4,6 +4,9 @@
   <label for="class_name">Class Name:</label>
   <input type="text" name="name" id="class_name" value="<%= @class.name %>">
 
+  <label for="course_date">Class date: </label>
+  <input type="date" name="course_date" id="course_date" value="<%= @class.course_date %>">
+
   <label for="max_capacity">Max Capacity:</label>
   <input type="number" min= 1 name="max_capacity" id="max_capacity" value ="<%= @class.max_capacity %>">
 

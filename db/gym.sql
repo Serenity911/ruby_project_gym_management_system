@@ -21,6 +21,7 @@ CREATE TABLE memberships (
 CREATE TABLE course_classes (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
+  course_date DATE,
   max_capacity INT,
   membership_id INT NOT NULL REFERENCES memberships(id),
   -- membership_level VARCHAR(255) NOT NULL,

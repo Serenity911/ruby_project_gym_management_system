@@ -4,12 +4,13 @@ require_relative( "./membership" )
 
 class CourseClass
 
-  attr_reader :id, :max_capacity, :venue_id, :membership_id
+  attr_reader :id, :max_capacity, :venue_id, :membership_id, :course_date
   attr_accessor :name
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @name = options['name']
+    @course_date = options['course_date']
     @max_capacity = options['max_capacity'].to_i
     @venue_id = options['venue_id'].to_i
     @membership_id = options['membership_id'].to_i
@@ -26,11 +27,11 @@ class CourseClass
       return
     else
     sql = "INSERT INTO course_classes
-    (name, max_capacity, venue_id, membership_id)
+    (name, course_date, max_capacity, venue_id, membership_id)
     VALUES
-    ($1, $2, $3, $4)
+    ($1, $2, $3, $4, $5)
     RETURNING id;"
-    values = [@name, @max_capacity, @venue_id, @membership_id]
+    values = [@name, @course_date, @max_capacity, @venue_id, @membership_id]
     @id = SqlRunner.run( sql, values ).first['id'].to_i
     end
   end
@@ -70,13 +71,13 @@ class CourseClass
 
   def update()
     sql = "UPDATE course_classes SET (
-    name, max_capacity, venue_id, membership_id
+    name, course_date, max_capacity, venue_id, membership_id
     ) = (
-      $1, $2, $3, $4
+      $1, $2, $3, $4, $5
     )
-    WHERE id = $5;
+    WHERE id = $6;
     "
-    values = [@name, @max_capacity, @venue_id, @membership_id, @id]
+    values = [@name, @course_date, @max_capacity, @venue_id, @membership_id, @id]
     SqlRunner.run( sql, values )
   end
 

@@ -23,6 +23,9 @@ Delete this class
           <a class="light_text" href="/venues/<%= @class.venue_id %>/"><%= @class.venue_name%></a>
         </div>
         <div class="square_footer">
+          <p class="light_text">Date: <%= @class.course_date %></p>
+        </div>
+        <div class="square_footer">
           <p class="light_text">Max capacity: <%= @class.max_capacity %></p>
           <p class="light_text">Membership: <%= @class.membership %></p>
         </div>
