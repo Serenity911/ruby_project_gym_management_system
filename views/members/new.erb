@@ -2,16 +2,21 @@
 
 
 <form action="/members" method="post">
-<label for="name"></label>
+<label for="name">Name: </label>
   <input type="text" name="name" id="name">
+
+  <label for="status">Status:</label>
   <select name="status">
         <option value="active" selected = "selected">active</option>
         <option value="paused" disabled>paused</option>
         <option value="archived" disabled>archived</option>
   </select>
-  <select name="membership_id">
-        <option value="1">Gold</option>
-        <option value="2">Silver</option>
-  </select>
+
+  <label for="membership_id">Membership required:</label>
+  <select class="" name="membership_id">
+  <% for membership in @memberships %>
+      <option value="<%= membership.id %>"><%= membership.name %></option>
+  <% end %>
+    </select>
   <input class="" type='submit' value="Add!">
 </form>

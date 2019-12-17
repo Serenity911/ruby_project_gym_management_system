@@ -1,6 +1,7 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' )
 require_relative( '../models/member.rb' )
+require_relative('../models/membership.rb')
 also_reload( '../models/*' )
 
 # show all members for a class
@@ -21,6 +22,7 @@ end
 # create new member
 # show form
 get '/members/new' do
+  @memberships = Membership.all()
   erb(:"/members/new")
 end
 
@@ -39,6 +41,7 @@ end
 
 # edit a member
 get '/members/:id/edit' do
+  @memberships = Membership.all()
   @member = Member.find(params['id'])
   erb(:"members/edit")
 end

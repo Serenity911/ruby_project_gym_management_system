@@ -3,6 +3,8 @@
 <form action="/members/<%= @member.id %>" method="post">
 <label for="name"></label>
   <input type="text" name="name" id="name" value="<%= @member.name %>">
+  
+  <label for="status">Status:</label>
   <select name="status">
 
           <% if @member.status == "active" %>
@@ -20,17 +22,12 @@
           <% end %>
   </select>
 
-  <select name="membership_id">
-    <% if @member.membership == "Gold" %>
-      <option value="1" selected>Gold</option>
-      <option value= "2">Silver</option>
-      <% elsif @member.membership == "Silver"%>
-      <option value= "1">Gold</option>
-      <option value= "2" selected>Silver</option>
-      <% else%>
-      <option value= "1">Gold</option>
-      <option value= "2">Silver</option>
-    <% end %>
-  </select>
+  <label for="membership_id">Membership required:</label>
+  <select class="" name="membership_id">
+  <% for membership in @memberships %>
+      <option value="<%= membership.id %>" <% if @member.membership_id == membership.id %>Selected<% end %>><%= membership.name %></option>
+  <% end %>
+    </select>
+
   <input class="" type='submit' value="Submit">
 </form>
