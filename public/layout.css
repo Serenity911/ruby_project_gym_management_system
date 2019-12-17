@@ -115,3 +115,7 @@ border: solid thin #2b3752;
   justify-content: center;
   margin-top: 1%;
 }
+
+#notext{
+display: none;
+}

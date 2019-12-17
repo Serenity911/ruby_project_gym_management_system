@@ -56,6 +56,12 @@ post '/members/:id/delete' do
   redirect to("members/")
 end
 
+# delete >> archive or delete
+get '/members/:id/archive_or_delete' do
+  @member = Member.find(params['id'])
+  erb(:"members/archive_or_delete")
+end
+
 # delete >> archive
 post '/members/:id/archive' do
   @member = Member.find(params['id'])

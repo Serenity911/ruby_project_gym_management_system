@@ -8,21 +8,23 @@ Edit
 /members/<%= @member.id %>/archive_or_delete
 <% end %>
 <% content_for :submenu2text do %>
-Archive | Delete
+Archive
 <% end %>
 
-<h1>Member details:</h1>
+<div class="">
+  <div class="">
 
-<a href="/members/<%= @member.id %>/edit">Edit</a>
-
-<form action="/members/<%= @member.id %>/delete" method="post">
-  <input type="submit"value="Delete">
-</form>
-
+<h1>Archive or Delete?</h1>
+<h2 class= "text-alert">Archive member:</h2>
 <form action="/members/<%= @member.id %>/archive" method="post">
   <input type="submit"value="Archive">
 </form>
 
+<h2 class= "text-alert">Delete cannot be recovered</h2>
+<form action="/members/<%= @member.id %>/delete" method="post">
+  <input type="submit"value="Delete">
+</form>
+</div>
 
 <ul class = "box_of_squares">
   <li class = "square">
@@ -33,3 +35,4 @@ Archive | Delete
     </div>
   </li>
 </ul>
+</div>
