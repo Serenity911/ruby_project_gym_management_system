@@ -5,7 +5,7 @@
   <input type="text" name="name" id="class_name" value="<%= @class.name %>">
 
   <label for="max_capacity">Max Capacity:</label>
-  <input type="number" name="max_capacity" id="max_capacity" value ="<%= @class.max_capacity %>">
+  <input type="number" min= 1 name="max_capacity" id="max_capacity" value ="<%= @class.max_capacity %>">
 
   <label for="membership_level">Venue:</label>
   <select class="" name="venue_id">
