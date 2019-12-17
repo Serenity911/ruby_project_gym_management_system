@@ -1,6 +1,7 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' )
 require_relative( '../models/course_class.rb' )
+require_relative( '../models/membership.rb' )
 also_reload( '../models/*' )
 
 get '/course_c/?' do
@@ -21,6 +22,7 @@ end
 # form for new
 
 get '/venues/:venue_id/course_c/new' do
+  @memberships = Membership.all()
   @venue_id = params['venue_id']
   erb(:"course_c/new")
 end
@@ -73,6 +75,7 @@ end
 # edit this class
 
 get '/venues/:venue_id/course_c/:course_id/edit' do
+  @memberships = Membership.all()
   @venue_id = params['venue_id']
   @class = CourseClass.find(params[:course_id])
   erb(:"course_c/edit")

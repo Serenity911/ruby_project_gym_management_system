@@ -12,11 +12,11 @@
     <option value="<%= @venue_id %>" Selected><%= @venue_id %></option>
   </select>
 
-<!-- todo make it dynamic -->
-  <label for="membership_id">Membership required:</label>
-  <select class="" name="membership_id">
-    <option value="1" <% if @class.membership == "Gold"%>Selected<% end %>>Gold</option>
-    <option value="2" <% if @class.membership == "Silver"%>Selected<% end %>>Silver</option>
+<label for="membership_id">Membership required:</label>
+<select class="" name="membership_id">
+<% for membership in @memberships %>
+    <option value="<%= membership.id %>" <% if @class.membership == membership.name %>Selected<% end %>><%= membership.name %></option>
+<% end %>
   </select>
 
 
