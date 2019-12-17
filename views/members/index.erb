@@ -41,7 +41,7 @@ Create new student
     <% for member in @members %>
     <div class = "table_row">
       <div class="entry_row">
-        <a  href=""><%= member.name() %></a>
+        <a  href="/members/<%= member.id %>"><%= member.name() %></a>
       </div>
       <div class="entry_row">
         <form  action="/members/<%= member.id %>/edit" method="get">

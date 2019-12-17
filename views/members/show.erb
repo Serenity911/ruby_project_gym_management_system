@@ -1,10 +1,17 @@
-<h1>Member details:</h1>
+<% content_for :submenu1 do %>
+/members/<%= @member.id %>/edit
+<% end %>
+<% content_for :submenu1text do %>
+Edit
+<% end %>
+<% content_for :submenu2 do %>
+/members/<%= @member.id %>/archive
+<% end %>
+<% content_for :submenu2text do %>
+Archive
+<% end %>
 
-<h2><%= @member.name %></h2>
-<ul>
-  <li><%= @member.status %></li>
-  <li><%= @member.membership %></li>
-</ul>
+<h1>Member details:</h1>
 
 <a href="/members/<%= @member.id %>/edit">Edit</a>
 
@@ -15,3 +22,14 @@
 <form action="/members/<%= @member.id %>/archive" method="post">
   <input type="submit"value="Archive">
 </form>
+
+
+<ul class = "box_of_squares">
+  <li class = "square">
+    <p  class="square_main"><%= @member.name %></p>
+    <div class="square_footer">
+      <p class="light_text">Status: <%= @member.status %></p>
+      <p class="light_text">Membership: <%= @member.membership %></p>
+    </div>
+  </li>
+</ul>

@@ -38,7 +38,6 @@ get '/venues/:venue_id/course_c/:course_id' do
   @class = CourseClass.find(params[:course_id])
   @members = Member.all_bookable(@class, "active", @class.membership_id)
   @members_signed_in = @class.members_list()
-  # binding.pry
 
   erb(:"course_c/show")
 end

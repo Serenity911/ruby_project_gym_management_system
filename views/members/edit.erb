@@ -22,14 +22,14 @@
 
   <select name="membership_id">
     <% if @member.membership == "Gold" %>
-      <option value=<%= @member.membership_id %> selected><%= @member.membership %></option>
-      <option value= "Silver">Silver</option>
+      <option value="1" selected>Gold</option>
+      <option value= "2">Silver</option>
       <% elsif @member.membership == "Silver"%>
-      <option value= "Gold">Gold</option>
-      <option value=<%= @member.membership_id %> selected><%= @member.membership %></option>
+      <option value= "1">Gold</option>
+      <option value= "2" selected>Silver</option>
       <% else%>
-      <option value= "Gold">Gold</option>
-      <option value= "Silver">Silver</option>
+      <option value= "1">Gold</option>
+      <option value= "2">Silver</option>
     <% end %>
   </select>
   <input class="" type='submit' value="Submit">

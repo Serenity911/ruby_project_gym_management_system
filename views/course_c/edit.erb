@@ -15,8 +15,8 @@
 <!-- todo make it dynamic -->
   <label for="membership_id">Membership required:</label>
   <select class="" name="membership_id">
-    <option value="<%= @class.membership_id %>" <% if @class.membership == "Gold"%>Selected<% end %>>Gold</option>
-    <option value="<%= @class.membership_id %>" <% if @class.membership == "Silver"%>Selected<% end %>>Silver</option>
+    <option value="1" <% if @class.membership == "Gold"%>Selected<% end %>>Gold</option>
+    <option value="2" <% if @class.membership == "Silver"%>Selected<% end %>>Silver</option>
   </select>
 
 
