@@ -32,7 +32,7 @@ font-size: 1rem;
   color: #e3f1ff;
 }
 
-.light_text:hover  {
+a.light_text:hover  {
   background-color: #333459;
 }
 
@@ -61,9 +61,12 @@ font-size: 1rem;
   text-align: center;
   width: 20%;
   /* height: 20%; */
-
   border: solid thin #2b3752;
   margin: 2%;
+}
+
+.square:last-child {
+  align-self: flex-start;
 }
 
 .square_main {
@@ -76,7 +79,7 @@ font-size: 1rem;
   justify-content: space-around;
   border-top: solid thin #2b3752;
   text-align: center;
-  margin-top: 2%;
+  /* margin-top: 2%; */
   background-color:  #1c1e4f;
 }
 
