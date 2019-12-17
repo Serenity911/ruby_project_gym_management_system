@@ -13,9 +13,18 @@ Create New
 
 <!-- <p>Here is the dashboard for this venue</p> -->
 <h1><%= @venue.name %></h1>
-<p>There are <%= @class_counter %> classes.</p>
-<p>You can have max <%= @venue.max_number_classes %> classes.</p>
-<br>
+<div class="box_of_squares">
+  <div class="square">
+    <div class="square_main">Address: </div>
+    <div class="square_footer light_text"> <p><%= @venue.address %></p> </div>
+  </div>
+
+    <div class="square">
+    <div class="square_main">Max n. of classes: </div>
+    <div class="square_footer light_text"> <p><%= @venue.max_number_classes %></p> </div>
+  </div>
+</div>
+
 
 <% if @venue.is_full %>
 <h2>This venue is full: you cannot create any more classes</h2>
@@ -30,7 +39,7 @@ EXT: venue show will show the dashboard of the venue -->
 
 <!-- delete this venue -->
 <br>
-  <form  action="/venues/<%= @venue.id %>/delete" method="get">
-    <input type="submit" value="Delete" >
-  </form>
+<form  action="/venues/<%= @venue.id %>/delete" method="get">
+  <input type="submit" value="Delete" >
+</form>
 <br>

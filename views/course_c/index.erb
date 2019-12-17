@@ -17,11 +17,11 @@ Choose an option for this item
 <% if @classes == [] %>
   <h1>No classes..</h1>
 <% else %>
-  <h1>Here are all the classes for all the venues</h1>
+  <h1>WHERE AM IHere are all the classes for all the venues</h1>
 
-  <ul>
+  <ul class = "box_of_squares">
     <% for course_class in @classes %>
-    <li>
+    <li class = "square">
       <a href="/venues/<%= course_class.venue_id %>/course_c/<%= course_class.id %>"><%= course_class.name %></a>
     </li>
     <% end %>
