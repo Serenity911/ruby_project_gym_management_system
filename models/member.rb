@@ -1,16 +1,18 @@
 require_relative( "../db/sql_runner" )
+require_relative( "./membership" )
+
 
 class Member
 
   attr_reader :id
-  attr_accessor :name, :status, :membership
+  attr_accessor :name, :status, :membership_id
 
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @status = options['status']
-    @membership = options['membership']
+    @membership_id = options['membership_id'].to_i
     # add date
     # add days of week
     # add instructors
@@ -20,11 +22,11 @@ class Member
 
   def save()
     sql = "INSERT INTO members
-    (name, status, membership)
+    (name, status, membership_id)
     VALUES
     ($1, $2, $3)
     RETURNING id"
-    values = [@name, @status, @membership]
+    values = [@name, @status, @membership_id]
     @id = SqlRunner.run( sql, values ).first['id'].to_i
   end
 
@@ -55,13 +57,13 @@ class Member
 
   def update()
     sql = "UPDATE members SET (
-    name, status, membership
+    name, status, membership_id
     ) = (
     $1, $2, $3
     )
     WHERE id = $4
     "
-    values = [@name, @status, @membership, @id]
+    values = [@name, @status, @membership_id, @id]
     SqlRunner.run( sql, values )
   end
 
@@ -107,7 +109,7 @@ class Member
 
   end
 
-  def self.all_by_membership(status, membership)
+  def self.all_by_membership(status, membership_id)
       # sql = "SELECT * FROM members WHERE membership = $1"
       # values = [membership]
       # results = SqlRunner.run( sql, values )
@@ -115,15 +117,15 @@ class Member
       @all_by_status = Member.all_by_status(status)
       @members_status_membership = []
       for one in @all_by_status
-        if one.membership == membership
+        if one.membership_id == membership_id
           @members_status_membership << one
         end
       end
       return @members_status_membership
   end
 
-  def self.all_bookable(course_class, status, membership)
-      @all_membership = Member.all_by_membership(status, membership)
+  def self.all_bookable(course_class, status, membership_id)
+      @all_membership = Member.all_by_membership(status, membership_id)
       @all_bookable = []
       for one in @all_membership
         if course_class.member_booked_in?(one)
@@ -132,6 +134,17 @@ class Member
         end
       end
       return @all_bookable
+  end
+
+
+  def membership()
+    sql = "SELECT memberships.name FROM memberships
+    INNER JOIN members
+    ON members.membership_id = memberships.id
+    WHERE members.membership_id = $1
+    ;"
+    values = [@membership_id]
+    return SqlRunner.run( sql, values ).first['name']
   end
 
 end

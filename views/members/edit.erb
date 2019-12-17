@@ -20,13 +20,13 @@
           <% end %>
   </select>
 
-  <select name="membership">
+  <select name="membership_id">
     <% if @member.membership == "Gold" %>
-      <option value=<%= @member.membership %> selected><%= @member.membership %></option>
+      <option value=<%= @member.membership_id %> selected><%= @member.membership %></option>
       <option value= "Silver">Silver</option>
       <% elsif @member.membership == "Silver"%>
       <option value= "Gold">Gold</option>
-      <option value=<%= @member.membership %> selected><%= @member.membership %></option>
+      <option value=<%= @member.membership_id %> selected><%= @member.membership %></option>
       <% else%>
       <option value= "Gold">Gold</option>
       <option value= "Silver">Silver</option>

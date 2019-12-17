@@ -30,13 +30,13 @@ end
 post '/venues/:venue_id/course_c' do
   course_class = CourseClass.new(params)
   course_class.save()
-  redirect to("/venues/#{params[:venue_id]}/course_c#{params[:course_id]}")
+  redirect to("/venues/#{params[:venue_id]}")
 end
 
 # show all members signed in and add one from a filtered droplist
 get '/venues/:venue_id/course_c/:course_id' do
   @class = CourseClass.find(params[:course_id])
-  @members = Member.all_bookable(@class, "active", @class.membership_level)
+  @members = Member.all_bookable(@class, "active", @class.membership_id)
   @members_signed_in = @class.members_list()
   # binding.pry
 
@@ -68,7 +68,7 @@ post '/venues/:venue_id/course_c/:course_id/delete' do
   @class = CourseClass.find(params[:course_id])
   @members_count = @class.members_count()
   @class.destroy()
-  redirect to("/venues/#{params[:venue_id]}/course_c")
+  redirect to("/venues/#{params[:venue_id]}")
 end
 
 # edit this class

@@ -1,9 +1,10 @@
 require_relative( "../db/sql_runner" )
+require_relative( "./membership" )
 
 
 class CourseClass
 
-  attr_reader :id, :max_capacity, :venue_id, :membership_level
+  attr_reader :id, :max_capacity, :venue_id, :membership_id
   attr_accessor :name
 
   def initialize( options )
@@ -11,7 +12,7 @@ class CourseClass
     @name = options['name']
     @max_capacity = options['max_capacity'].to_i
     @venue_id = options['venue_id'].to_i
-    @membership_level = options['membership_level']
+    @membership_id = options['membership_id'].to_i
     # add date
     # add days of week
     # add instructors
@@ -25,11 +26,11 @@ class CourseClass
       return
     else
     sql = "INSERT INTO course_classes
-    (name, max_capacity, venue_id, membership_level)
+    (name, max_capacity, venue_id, membership_id)
     VALUES
     ($1, $2, $3, $4)
     RETURNING id;"
-    values = [@name, @max_capacity, @venue_id, @membership_level]
+    values = [@name, @max_capacity, @venue_id, @membership_id]
     @id = SqlRunner.run( sql, values ).first['id'].to_i
     end
   end
@@ -69,13 +70,13 @@ class CourseClass
 
   def update()
     sql = "UPDATE course_classes SET (
-    name, max_capacity, venue_id, membership_level
+    name, max_capacity, venue_id, membership_id
     ) = (
       $1, $2, $3, $4
     )
     WHERE id = $5;
     "
-    values = [@name, @max_capacity, @venue_id, @membership_level, @id]
+    values = [@name, @max_capacity, @venue_id, @membership_id, @id]
     SqlRunner.run( sql, values )
   end
 
@@ -107,7 +108,7 @@ class CourseClass
 
   # check membership
   def correct_membership?(member)
-    return member.membership == @membership_level
+    return member.membership_id == @membership_id
   end
 
   # add to class tracker
@@ -182,6 +183,16 @@ class CourseClass
       end
     end
     return full_classes
+  end
+
+  def membership()
+    sql = "SELECT memberships.name FROM memberships
+    INNER JOIN course_classes
+    ON course_classes.membership_id = memberships.id
+    WHERE course_classes.membership_id = $1
+    ;"
+    values = [@membership_id]
+    return SqlRunner.run( sql, values ).first['name']
   end
 
 

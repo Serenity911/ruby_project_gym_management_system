@@ -7,15 +7,16 @@
   <label for="max_capacity">Max Capacity:</label>
   <input type="number" min= 1 name="max_capacity" id="max_capacity" value ="<%= @class.max_capacity %>">
 
-  <label for="membership_level">Venue:</label>
+  <label for="venue_id">Venue:</label>
   <select class="" name="venue_id">
     <option value="<%= @venue_id %>" Selected><%= @venue_id %></option>
   </select>
 
-  <label for="membership_level">Membership required:</label>
-  <select class="" name="membership_level">
-    <option value="Gold" <% if @class.membership_level == "Gold"%>Selected<% end %>>Gold</option>
-    <option value="Silver" <% if @class.membership_level == "Silver"%>Selected<% end %>>Silver</option>
+<!-- todo make it dynamic -->
+  <label for="membership_id">Membership required:</label>
+  <select class="" name="membership_id">
+    <option value="<%= @class.membership_id %>" <% if @class.membership == "Gold"%>Selected<% end %>>Gold</option>
+    <option value="<%= @class.membership_id %>" <% if @class.membership == "Silver"%>Selected<% end %>>Silver</option>
   </select>
 
 

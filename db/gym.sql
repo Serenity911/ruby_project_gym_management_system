@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS class_trackers;
 DROP TABLE IF EXISTS members;
 DROP TABLE IF EXISTS course_classes;
+DROP TABLE IF EXISTS memberships;
 DROP TABLE IF EXISTS venues;
 
 CREATE TABLE venues (
@@ -10,27 +11,30 @@ CREATE TABLE venues (
   max_number_classes INT
 );
 
+-- if time, change to membership_id in members
+CREATE TABLE memberships (
+  id SERIAL primary key,
+  name VARCHAR(255) NOT NULL,
+  price INT
+);
+
 CREATE TABLE course_classes (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   max_capacity INT,
-  membership_level VARCHAR(255) NOT NULL,
+  membership_id INT NOT NULL REFERENCES memberships(id),
+  -- membership_level VARCHAR(255) NOT NULL,
   venue_id INT NOT NULL REFERENCES venues(id) ON DELETE CASCADE
 );
 
--- if time, change to membership_id in members
--- CREATE TABLE memberships (
---   id SERIAL primary key,
---   name VARCHAR(255) NOT NULL,
---   price INT
--- );
+
 
 CREATE TABLE members (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   status VARCHAR(255) NOT NULL,
-  membership VARCHAR(255) NOT NULL
-  -- membership_id INT NOT NULL REFERENCES memberships(id)
+  -- membership VARCHAR(255) NOT NULL
+  membership_id INT NOT NULL REFERENCES memberships(id)
 );
 
 CREATE TABLE class_trackers (
