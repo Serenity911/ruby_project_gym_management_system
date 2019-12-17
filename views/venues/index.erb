@@ -16,7 +16,11 @@ Create New
 <ul>
   <% for venue in @venues %>
   <li>
-    <a class = "square" href="/venues/<%= venue.id %>"><%= venue.name %></a>
+    <div class = "square">
+      <a  href="/venues/<%= venue.id %>"><%= venue.name %></a>
+      <a  href="/venues/<%= venue.id %>/edit">Edit</a>
+      <a  href="/venues/<%= venue.id %>/delete">Delete</a>
+    </div>
   </li>
   <% end %>
 </ul>

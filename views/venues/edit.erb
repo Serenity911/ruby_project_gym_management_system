@@ -1,0 +1,17 @@
+<h1>Edit  details for <%= @venue.name %>:</h1>
+
+<form class="" action="/venues/<%= @venue.id %>/update" method="post">
+  <label for="venue_name">Venue Name:</label>
+  <input type="text" name="name" id="venue_name" value="<%= @venue.name %>">
+
+  <label for="address">Venue address:</label>
+  <input type="text" name="address" id="address" value="<%= @venue.address %>">
+
+
+  <label for="max_number_classes">Max Number of Classes:</label>
+  <input type="number" name="max_number_classes" id="max_number_classes" value="<%= @venue.max_number_classes %>">
+
+
+  <input class="" type='submit' value="Submit">
+
+</form>

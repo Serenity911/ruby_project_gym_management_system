@@ -46,3 +46,17 @@ post '/venues/:id/delete' do
   @venue.destroy()
   redirect to("/venues/?")
 end
+
+# edit this venue
+
+get '/venues/:id/edit' do
+  @venue = Venue.find(params[:id])
+  erb(:"venues/edit")
+end
+
+# update this venue
+post '/venues/:id/update' do
+  venue = Venue.new(params)
+  venue.update()
+  redirect to("/venues/#{params['venue_id']}")
+end
