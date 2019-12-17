@@ -1,51 +1,80 @@
 <% content_for :submenu1 do %>
-/venues/<%= @class.venue_id %>/course_c
-<% end %>
-<% content_for :submenu1text do %>
-Show all
-<% end %>
-
-<% content_for :submenu2 do %>
 /venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/edit
 <% end %>
-
-<% content_for :submenu2text do %>
+<% content_for :submenu1text do %>
 Edit this class
 <% end %>
 
-<h1>Class Name: <%= @class.name %></h1>
-<h2>Max Capacity: <%= @class.max_capacity %></h2>
-<h2>Venue Name: <%= @class.venue_name %></h2>
-<h2>Type of membership needed: <%= @class.membership_level %></h2>
+<% content_for :submenu2 do %>
+/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/delete
+<% end %>
+
+<% content_for :submenu2text do %>
+Delete this class
+<% end %>
+
+<div>
+
+  <div>
+    <ul class = "box_of_squares">
+      <li class = "square">
+        <a  class="square_main" href="/venues/<%= @class.venue_id %>/@class/<%= @class.id %>"><%= @class.name%></a>
+        <div class="square_footer">
+          <a class="light_text" href="/venues/<%= @class.venue_id %>/"><%= @class.venue_name%></a>
+        </div>
+        <div class="square_footer">
+          <p class="light_text">Max capacity: <%= @class.max_capacity%></p>
+          <p class="light_text">Membership: <%= @class.membership_level%></p>
+        </div>
+      </li>
+
+    </div>
 
 
-<!-- book a member! -->
-<form action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/book" method="post">
-  <select name="member_id">
-    <% for member in @members %>
-        <option value="<%= member.id %>"><%= member.name %></option>
-    <% end %>
-  </select>
-  <input class="" type='submit' value="Book!">
-</form>
+    <!-- book a member! -->
 
-<% if @members_signed_in == [] %>
-<h2>No members signed in..yet!</h2>
-<% else %>
-
-  <!-- print all members signed in -->
-  <ul>
-  <% for member in @members_signed_in %>
-      <li><%= member.name() %></li>
-      <form class="" action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/cancel_booking/<%= member.id %>" method="post">
-        <input type="submit" value="Remove this member">
+    <div>
+      <% if @members==[] %>
+      <p class="text-alert">No member found</p>
+      <% else %>
+      <form action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/book" method="post">
+        <select name="member_id">
+          <% for member in @members %>
+          <option value="<%= member.id %>"><%= member.name %></option>
+          <% end %>
+        </select>
+        <input class="" type='submit' value="Book!">
       </form>
+      <% end %>
+    </div>
 
-  <% end %>
-  </ul>
-  <% end %>
+    <div>
 
-  <!-- delete this class -->
-    <form  action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/delete" method="get">
-      <input type="submit" value="Delete" >
-    </form>
+      <% if @members_signed_in == [] %>
+      <h2>No members signed in..yet!</h2>
+      <% else %>
+
+      <!-- print all members signed in -->
+      <h2>Members signed in: </h2>
+      <div class = "box_of_table">
+        <% for member in @members_signed_in %>
+        <div class = "table_row">
+          <div class="">
+            <a  href=""><%= member.name() %></a>
+          </div>
+          <div class="">
+            <form  action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/cancel_booking/<%= member.id %>" method="post">
+              <input type="submit" value="Remove this member">
+            </form>
+          </div>
+
+        </div>
+        <% end %>
+
+      </div>
+      <% end %>
+    </div>
+
+
+
+  </div>

@@ -7,6 +7,7 @@ margin: 0;
 
 ul {
   list-style-type: none;
+  padding: 0;
 }
 
 .menu {
@@ -43,7 +44,7 @@ a.light_text:hover  {
 
 /* or div second child of body */
 .main_section {
-  margin: 0 5em;
+  /* margin: 0 5em; */
   text-align: center;
 }
 
@@ -85,4 +86,21 @@ a.light_text:hover  {
 
 .text-alert {
   color: red;
+}
+
+
+.box_of_table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2%;
+
+}
+
+.table_row {
+display: flex;
+justify-content: space-around;
+width: 20%;
+border: solid thin #2b3752;
+
 }
