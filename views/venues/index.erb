@@ -13,14 +13,14 @@ Create New
 
 <h1>Select a venue:</h1>
 
-<ul>
+<ul class = "box_of_squares">
   <% for venue in @venues %>
-  <li>
-    <div class = "square">
-      <a  href="/venues/<%= venue.id %>"><%= venue.name %></a>
-      <a  href="/venues/<%= venue.id %>/edit">Edit</a>
-      <a  href="/venues/<%= venue.id %>/delete">Delete</a>
-    </div>
+  <li class = "square">
+      <a  class="square_main" href="/venues/<%= venue.id %>"><%= venue.name %></a>
+      <div class="square_footer">
+        <a  class="menu_item" href="/venues/<%= venue.id %>/edit">Edit</a>
+        <a  class="menu_item" href="/venues/<%= venue.id %>/delete">Delete</a>
+      </div>
   </li>
   <% end %>
 </ul>

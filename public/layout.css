@@ -5,6 +5,9 @@ background-color:#cdd9ec ;
 margin: 0;
 }
 
+ul {
+  list-style-type: none;
+}
 
 .menu {
   display: flex;
@@ -14,8 +17,6 @@ margin: 0;
   /* border: solid thin #2b3752; */
   background-color: #090b3d;
   color: #e3f1ff;
-
-
 }
 
 .menu:last-of-type {
@@ -27,20 +28,51 @@ font-size: 1rem;
   /* border-style: solid;
   border-color: #2b3752;
   border-width: 1%; */
-  padding: 1rem;
+  padding: 0.5rem;
   color: #e3f1ff;
-
 }
 
 .menu_item:hover  {
   background-color: #333459;
 }
 
+.menu > .menu_item {
+  padding: 1rem;
+
+}
+
 /* or div second child of body */
 .main_section {
   margin: 0 5em;
+  text-align: center;
+}
+
+.box_of_squares{
+  display: flex;
+  justify-content: center;
 }
 
 .square {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 10%;
+  height: 10%;
   border: solid thin #2b3752;
+  margin: 2%;
+}
+
+.square_main {
+  /* border: solid thin #2b3752; */
+  padding: 15%;
+
+}
+.square_footer {
+  display: flex;
+  justify-content: space-around;
+  border-top: solid thin #2b3752;
+  text-align: center;
+  margin-top: 2%;
+  background-color:  #1c1e4f;
 }
