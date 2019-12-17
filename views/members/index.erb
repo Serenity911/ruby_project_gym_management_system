@@ -1,23 +1,58 @@
-<h1>Here are all the members</h1>
+<% content_for :submenu1 do %>
+/members/?
+<% end %>
+<% content_for :submenu1text do %>
+Show all
+<% end %>
+<% content_for :submenu2 do %>
+/members/new
+<% end %>
+<% content_for :submenu2text do %>
+Create new student
+<% end %>
 
-<h2><a href="/members/new">Add a new member!</a></h2>
 
-<form action="/members/filter/active" method="get">
-  <input type="submit" value="Filter Active">
-</form>
+<div >
+  <h1>All members:</h1>
 
-<form action="/members/filter/paused" method="get">
-  <input type="submit" value="Filter Paused">
-</form>
+  <div class="mini-nav">
+    <div class="">
+      <form action="/members/?" method="get">
+        <input type="submit" value="Show all">
+      </form>
+    </div>
+    <div class="">
+      <form action="/members/filter/active" method="get">
+        <input type="submit" value="Filter Active">
+      </form>
+    </div>
+    <div class="">
+      <form action="/members/filter/paused" method="get">
+        <input type="submit" value="Filter Paused">
+      </form>
+    </div>
+    <div class="">
+      <form action="/members/filter/archived" method="get">
+        <input type="submit" value="Filter Archived">
+      </form>
+    </div>
+  </div>
+  <div class = "box_of_table">
+    <% for member in @members %>
+    <div class = "table_row">
+      <div class="entry_row">
+        <a  href=""><%= member.name() %></a>
+      </div>
+      <div class="entry_row">
+        <form  action="/members/<%= member.id %>/edit" method="get">
+          <input type="submit" value="Edit">
+        </form>
+        <form  action="/members/<%= member.id %>/archive" method="post">
+          <input type="submit" value="Archive">
+        </form>
+      </div>
 
-<form action="/members/filter/archived" method="get">
-  <input type="submit" value="Filter Archived">
-</form>
-
-<ul>
-  <% for member in @members %>
-  <li>
-    <a href="/members/<%= member.id %>"><%= member.name %></a>
-  </li>
-  <% end %>
-</ul>
+    </div>
+    <% end %>
+  </div>
+</div>

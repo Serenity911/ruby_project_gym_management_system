@@ -99,8 +99,19 @@ a.light_text:hover  {
 
 .table_row {
 display: flex;
-justify-content: space-around;
+justify-content: space-between;
 width: 20%;
 border: solid thin #2b3752;
 
+}
+
+.entry_row {
+  padding: 1%;
+  display: flex;
+}
+
+.mini-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 1%;
 }
