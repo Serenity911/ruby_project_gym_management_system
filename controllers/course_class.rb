@@ -70,3 +70,18 @@ post '/venues/:venue_id/course_c/:course_id/delete' do
   @class.destroy()
   redirect to("/venues/#{params[:venue_id]}/course_c")
 end
+
+# edit this class
+
+get '/venues/:venue_id/course_c/:course_id/edit' do
+  @venue_id = params['venue_id']
+  @class = CourseClass.find(params[:course_id])
+  erb(:"course_c/edit")
+end
+
+# update
+post '/venues/:venue_id/course_c/:id/update' do
+  course_class = CourseClass.new(params)
+  course_class.update()
+  redirect to("/venues/#{params['venue_id']}/course_c/#{params['id']}")
+end

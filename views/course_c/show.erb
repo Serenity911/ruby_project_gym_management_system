@@ -1,3 +1,17 @@
+<% content_for :submenu1 do %>
+/venues/<%= @class.venue_id %>/course_c
+<% end %>
+<% content_for :submenu1text do %>
+Show all
+<% end %>
+
+<% content_for :submenu2 do %>
+/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/edit
+<% end %>
+
+<% content_for :submenu2text do %>
+Edit this class
+<% end %>
 
 <h1>Class Name: <%= @class.name %></h1>
 <h2>Max Capacity: <%= @class.max_capacity %></h2>

@@ -1,3 +1,16 @@
+<% content_for :submenu1 do %>
+/venues/?
+<% end %>
+<% content_for :submenu1text do %>
+Show all
+<% end %>
+<% content_for :submenu2 do %>
+/venues/new
+<% end %>
+<% content_for :submenu2text do %>
+Create New
+<% end %>
+
 <!-- <p>Here is the dashboard for this venue</p> -->
 <h1><%= @venue.name %></h1>
 <p>There are <%= @class_counter %> classes.</p>

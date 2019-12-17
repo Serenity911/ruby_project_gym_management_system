@@ -1,4 +1,15 @@
-
+<% content_for :submenu1 do %>
+/venues/<%= @venue_id %>/course_c
+<% end %>
+<% content_for :submenu1text do %>
+Show all
+<% end %>
+<% content_for :submenu2 do %>
+/venues/<%= @venue_id %>/course_c/new
+<% end %>
+<% content_for :submenu2text do %>
+Create a class
+<% end %>
 
 <% if @classes == [] %>
 <h1>No classes..Why not adding some?</h1>

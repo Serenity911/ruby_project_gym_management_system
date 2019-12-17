@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>MMA | Members Management App</title>
-    <link rel="stylesheet" type="text/css" href="/layout.css">
-  </head>
-  <body>
-    <div class= "menu" >
+<head>
+  <meta charset="utf-8">
+  <title>MMA | Members Management App</title>
+  <link rel="stylesheet" type="text/css" href="/layout.css">
+</head>
+<body>
+  <div class="nav">
 
+    <div class= "menu" >
+      
       <a class = "menu_item" href="/venues/">Venues</a>
       <a class = "menu_item" href="/course_c/">Classes</a>
       <a class = "menu_item" href="/members/">Members</a>
     </div>
-    <div class="main_section">
-      <%= yield %>
+
+    <div class="menu">
+      <a class = "menu_item" href="<%= yield_content :submenu1 %>"><%= yield_content :submenu1text %></a>
+      <a class = "menu_item" href="<%= yield_content :submenu2 %>"><%= yield_content :submenu2text %></a>
     </div>
+  </div>
+
+  <div class="main_section">
 
 
-  </body>
+
+    <%= yield %>
+  </div>
+
+
+</body>
 </html>

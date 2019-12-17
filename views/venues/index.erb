@@ -1,10 +1,22 @@
+<% content_for :submenu1 do %>
+/venues/?
+<% end %>
+<% content_for :submenu1text do %>
+Show all
+<% end %>
+<% content_for :submenu2 do %>
+/venues/new
+<% end %>
+<% content_for :submenu2text do %>
+Create New
+<% end %>
 
 <h1>Select a venue:</h1>
 
 <ul>
   <% for venue in @venues %>
   <li>
-    <a href="/venues/<%= venue.id %>"><%= venue.name %></a>
+    <a class = "square" href="/venues/<%= venue.id %>"><%= venue.name %></a>
   </li>
   <% end %>
 </ul>

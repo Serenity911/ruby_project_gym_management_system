@@ -3,7 +3,8 @@ require_relative( "../db/sql_runner" )
 
 class CourseClass
 
-  attr_reader :id, :name, :max_capacity, :venue_id, :membership_level
+  attr_reader :id, :max_capacity, :venue_id, :membership_level
+  attr_accessor :name
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
