@@ -30,9 +30,10 @@ end
 # update the new
 
 post '/venues/:venue_id/course_c' do
-  course_class = CourseClass.new(params)
-  course_class.save()
-  redirect to("/venues/#{params[:venue_id]}")
+  @course_class = CourseClass.new(params)
+  @new_course_class = @course_class.save_if_availability()
+  # course_class.save()
+  erb(:"course_c/new_confirmation")
 end
 
 # show all members signed in and add one from a filtered droplist

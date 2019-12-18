@@ -19,7 +19,8 @@ end
 get '/venues/:id/?' do
   @venue = Venue.find(params[:id])
   @class_counter = @venue.classes_counter()
-  @is_full = @venue.is_full()
+  # EXT1
+  # @is_full = @venue.is_full()
   @classes = @venue.get_all_classes()
   erb(:"venues/show")
 end

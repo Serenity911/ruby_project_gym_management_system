@@ -18,13 +18,13 @@ class CourseClass
     # add instructors
   end
 
-
+  # EXT1
   # create a course_class
 
   def save()
-    if Venue.find(@venue_id).is_full
-      return
-    else
+    # if Venue.find(@venue_id).is_full
+    #   return
+    # else
     sql = "INSERT INTO course_classes
     (name, course_date, max_capacity, venue_id, membership_id)
     VALUES
@@ -32,7 +32,7 @@ class CourseClass
     RETURNING id;"
     values = [@name, @course_date, @max_capacity, @venue_id, @membership_id]
     @id = SqlRunner.run( sql, values ).first['id'].to_i
-    end
+    # end
   end
 
   # delete all the course_classes
@@ -194,6 +194,23 @@ class CourseClass
     values = [@membership_id]
     return SqlRunner.run( sql, values ).first['name']
   end
+
+  def week_availability?
+    sql = "SELECT COUNT(*) AS count FROM course_classes AS cc WHERE cc.venue_id = $1 AND EXTRACT('week' FROM cc.course_date)=EXTRACT('week' FROM DATE($2)) AND  EXTRACT('year' FROM cc.course_date)=EXTRACT('year' FROM DATE($2));"
+    values = [@venue_id, @course_date]
+    result = SqlRunner.run( sql, values ).first['count'].to_i
+    return result < Venue.find(@venue_id).max_number_classes
+  end
+
+  def save_if_availability()
+    if self.week_availability?
+      self.save
+    else
+      return
+    end
+
+  end
+
 
 
 end

@@ -20,19 +20,17 @@ Delete
   </div>
 
     <div class="square">
-    <div class="square_main">Max n. of classes: </div>
+    <div class="square_main">Max n. of classes per week: </div>
     <div class="square_footer light_text"> <p><%= @venue.max_number_classes %></p> </div>
   </div>
 </div>
 
 <!-- venue is full alert -->
 
-<% if @venue.is_full %>
-<h2 class="text-alert">This venue is full: you cannot create any more classes</h2>
+<!-- <h2 class="text-alert">This venue is full: you cannot create any more classes</h2>
 <p>Maybe it's time to open a new venue?</p>
-<% end %>
 
-<br>
+<br> -->
 
 
 
@@ -55,15 +53,12 @@ Delete
 
 <!-- create a new class -->
 <li class = "square">
-  <% if @venue.is_full %>
-  <p  class="square_main text-alert" >This venue is full.<br> You cannot create any new class.</p>
-  <% else %>
+  <!-- <p  class="square_main text-alert" >This venue is full.<br> You cannot create any new class.</p> -->
   <a  class="square_main" href="/venues/<%= @venue.id %>/course_c/new">Create new class</a>
   <!-- <div class="square_footer">
     <a  class="light_text" href=""></a>
     <a  class="light_text" href=""></a>
   </div> -->
 </li>
-<% end %>
 
 </ul>
