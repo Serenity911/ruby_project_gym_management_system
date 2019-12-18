@@ -1,4 +1,7 @@
 <h1>Edit class's details in venue <%= @venue_id %>:</h1>
+<% if @class.members_count > 0  %>
+<p class="text-alert">There are already members signed in for this class. <br> If you change the Membership required, it will only affect future bookings.</p>
+<% end %>
 
 <form class="" action="/venues/<%= @venue_id %>/course_c/<%= @class.id %>/update" method="post">
   <label for="class_name">Class Name:</label>

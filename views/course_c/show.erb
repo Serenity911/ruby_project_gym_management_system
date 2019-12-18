@@ -37,6 +37,9 @@ Delete this class
     <!-- book a member! -->
 
     <div>
+      <% if !@class.availability?%>
+      <h2 class="text-alert">This class is full: you cannot add new members.</h2>
+      <p>Remove one or create a new class.</p>      <% else %>
       <% if @members==[] %>
       <p class="text-alert">No member found</p>
       <% else %>
@@ -49,6 +52,8 @@ Delete this class
         <input class="" type='submit' value="Book!">
       </form>
       <% end %>
+      <% end %>
+
     </div>
 
     <div>
