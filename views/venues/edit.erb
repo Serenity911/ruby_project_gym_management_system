@@ -9,7 +9,7 @@
 
 
   <label for="max_number_classes">Max Number of Classes:</label>
-  <input type="number" min= <%= @venue.classes_counter %>  name="max_number_classes" id="max_number_classes" value="<%= @venue.max_number_classes %>">
+  <input type="number" min= <%= @venue.classes_counter %> max=1000 name="max_number_classes" id="max_number_classes" value="<%= @venue.max_number_classes %>">
 
 
   <input class="" type='submit' value="Submit">

@@ -18,13 +18,9 @@ class CourseClass
     # add instructors
   end
 
-  # EXT1
-  # create a course_class
+
 
   def save()
-    # if Venue.find(@venue_id).is_full
-    #   return
-    # else
     sql = "INSERT INTO course_classes
     (name, course_date, max_capacity, venue_id, membership_id)
     VALUES

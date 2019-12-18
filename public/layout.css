@@ -136,3 +136,19 @@ display: none;
 .text-warning {
   color: #de8500;
 }
+
+.active {
+  color: green;
+}
+
+.active {
+  background-color: rgba(21, 175, 32, 0.22);
+}
+
+.paused {
+  background-color: rgba(214, 212, 196, 0.82);
+}
+
+.archived {
+  background-color: rgba(113, 14, 0, 0.2);
+}

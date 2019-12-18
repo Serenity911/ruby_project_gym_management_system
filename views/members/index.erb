@@ -37,9 +37,10 @@ Create new student
       </form>
     </div>
   </div>
+
   <div class = "box_of_table">
     <% for member in @members %>
-    <div class = "table_row">
+    <div class = "table_row <%= member.status %>">
       <div class="entry_row">
         <a  href="/members/<%= member.id %>"><%= member.name() %></a>
       </div>
