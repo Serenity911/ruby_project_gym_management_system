@@ -76,6 +76,15 @@ class Member
     SqlRunner.run( sql, values )
   end
 
+  # reactivate
+  def reactivate()
+    sql = "UPDATE members SET status = $1
+    WHERE id = $2
+    "
+    values = ["active", @id]
+    SqlRunner.run( sql, values )
+  end
+
   # find by id
   def self.find( id )
     sql = " SELECT * FROM members WHERE id = $1"

@@ -41,7 +41,7 @@ Delete this class
       <h2 class="text-alert">This class is full: you cannot add new members.</h2>
       <p>Remove one or create a new class.</p>      <% else %>
       <% if @members==[] %>
-      <p class="text-alert">No member found</p>
+      <p class="text-alert">There are no members matching the class requirements.</p>
       <% else %>
       <form action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/book" method="post">
         <select name="member_id">

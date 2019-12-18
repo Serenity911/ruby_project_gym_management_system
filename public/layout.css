@@ -132,3 +132,7 @@ display: none;
 .text-confirm {
   color: green;
 }
+
+.text-warning {
+  color: #de8500;
+}

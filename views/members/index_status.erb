@@ -46,11 +46,18 @@ Create new student
         <form  action="/members/<%= member.id %>/edit" method="get">
           <input type="submit" value="Edit">
         </form>
-        <form  action="/members/<%= member.id %>/archive" method="post">
-          <input type="submit" value="Archive">
-        </form>
-      </div>
+        <% if member.status == "archived" %>
+        <form  action="/members/<%= member.id %>/reactivate" method="post">
+          <input type="submit" value="Reactivate">
+          <% elsif member.status == "paused" %>
+          <form  action="/members/<%= member.id %>/reactivate" method="post">
+            <input type="submit" value="Reactivate">
+            <% else %>
+            <form  action="/members/<%= member.id %>/archive" method="post">
+              <input type="submit" value="Archive">
+              <% end %>
+            </div>
 
-    </div>
-    <% end %>
-  </div>
+          </div>
+          <% end %>
+        </div>

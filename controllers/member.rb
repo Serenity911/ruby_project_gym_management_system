@@ -69,5 +69,13 @@ end
 post '/members/:id/archive' do
   @member = Member.find(params['id'])
   @member.archive()
-  redirect to("members/")
+  redirect back
+end
+
+# reactivate
+
+post '/members/:id/reactivate' do
+  @member = Member.find(params['id'])
+  @member.reactivate()
+  redirect back
 end

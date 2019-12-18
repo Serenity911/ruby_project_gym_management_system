@@ -11,9 +11,9 @@ Show all
 Create a class
 <% end %>
 
-<p>Are you sure you want to delete the class <%= @class.name %>?</p>
+<p class="text-alert">Are you sure you want to delete the class <%= @class.name %>?</p>
 <p>It has <%= @members_count %> member/s.</p>
 
-<form class="" action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/delete" method="post">
+<form action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/delete" method="post">
   <input type="submit" value="Delete this class!" >
 </form>
