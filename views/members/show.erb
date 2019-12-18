@@ -20,5 +20,20 @@ Archive | Delete
       <p class="light_text">Status: <%= @member.status %></p>
       <p class="light_text">Membership: <%= @member.membership %></p>
     </div>
+    <div>
+      <% if @member.attendance == [] %>
+      <h3> No classes yet!</h3>
+      <% else %>
+      <h3> Member attendance:</h3>
+      <% for lesson in @member.attendance() %>
+      <div class="footer_list">
+        <p class="light_text"><%= lesson.name %></p>
+        <p class="light_text"><%= lesson.course_date %></p>
+      </div>
+      <% end  %>
+      <% end  %>
+
+    </div>
+
   </li>
 </ul>

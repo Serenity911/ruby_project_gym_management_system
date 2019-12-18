@@ -8,7 +8,7 @@
   <input type="date" name="course_date" id="course_date" value="<%= @class.course_date %>">
 
   <label for="max_capacity">Max Capacity:</label>
-  <input type="number" min= 1 name="max_capacity" id="max_capacity" value ="<%= @class.max_capacity %>">
+  <input type="number" min= <%= @class.members_count %> name="max_capacity" id="max_capacity" value ="<%= @class.max_capacity %>">
 
   <label for="venue_id">Venue:</label>
   <select class="" name="venue_id">

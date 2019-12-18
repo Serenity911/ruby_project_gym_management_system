@@ -13,7 +13,7 @@ Member.delete_all()
 venue1 = Venue.new({
   "name" => "New Martial Club",
   "address" => "100 Watson Cresent",
-  "max_number_classes" => 2
+  "max_number_classes" => 10
 })
 
 venue1.save()
@@ -21,7 +21,7 @@ venue1.save()
 venue2 = Venue.new({
   "name" => "Combat Center",
   "address" => "100 Watson Cresent",
-  "max_number_classes" => 2
+  "max_number_classes" => 10
 })
 
 venue2.save()
@@ -70,6 +70,16 @@ course_class3 = CourseClass.new({
 
 course_class3.save()
 
+course_class4 = CourseClass.new({
+  'name' => 'MMA Workshop',
+  'course_date' => '2019-12-22',
+  'max_capacity' => 3,
+  'venue_id' => venue1.id,
+  'membership_id' => membership1.id
+  })
+
+course_class4.save()
+
 member1 = Member.new({
   'name' => 'Jenny',
   'status' => 'active',
@@ -86,6 +96,46 @@ member2 = Member.new({
 
 member2.save()
 
-binding.pry
+member3 = Member.new({
+  'name' => 'John',
+  'status' => 'active',
+  'membership_id' => membership1.id
+  })
 
-nil
+member3.save()
+
+member4 = Member.new({
+  'name' => 'Karolina',
+  'status' => 'active',
+  'membership_id' => membership2.id
+  })
+
+member4.save()
+
+member5 = Member.new({
+  'name' => 'Bill',
+  'status' => 'active',
+  'membership_id' => membership2.id
+  })
+
+member5.save()
+
+member6 = Member.new({
+  'name' => 'Stuart',
+  'status' => 'archived',
+  'membership_id' => membership2.id
+  })
+
+member6.save()
+
+member7 = Member.new({
+  'name' => 'Frodo',
+  'status' => 'paused',
+  'membership_id' => membership1.id
+  })
+
+member7.save()
+
+# binding.pry
+#
+# nil
