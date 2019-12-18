@@ -10,13 +10,13 @@ get '/course_c/?' do
 end
 
 # show all classes for a venue
-get '/venues/:venue_id/course_c' do
-  @venue_id = params[:venue_id]
-  @classes = CourseClass.all_by_venue(@venue_id)
-  @empty_classes = CourseClass.empty_classes(@venue_id)
-  @full_classes = CourseClass.full_classes(@venue_id)
-  erb(:"course_c/index_by_venue")
-end
+# get '/venues/:venue_id/course_c' do
+#   @venue_id = params[:venue_id]
+#   @classes = CourseClass.all_by_venue(@venue_id)
+#   @empty_classes = CourseClass.empty_classes(@venue_id)
+#   @full_classes = CourseClass.full_classes(@venue_id)
+#   erb(:"course_c/index_by_venue")
+# end
 
 # create a new class
 # form for new

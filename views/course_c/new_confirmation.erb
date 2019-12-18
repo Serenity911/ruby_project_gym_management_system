@@ -1,9 +1,20 @@
+<% content_for :submenu1 do %>
+/venues/<%= @course_class.venue_id %>
+<% end %>
+<% content_for :submenu1text do %>
+Back to venue
+<% end %>
+<% content_for :submenu2 do %>
+/venues/<%= @course_class.venue_id %>/course_c/new
+<% end %>
+<% content_for :submenu2text do %>
+Create another class
+<% end %>
+
 <% if @new_course_class == nil %>
-<p>It's not possible to create any more classes for this week <%= @course_class.course_date %></p>
+<p class="text-alert">It's not possible to create any more classes for this week <%= @course_class.course_date %></p>
 <p>Choose another date</p>
 <a href="/venues/<%= @course_class.venue_id %>/course_c/new"> Back</a>
 <% else %>
-<p>You have successfully created a new class!</p>
-<a href="/venues/<%= @course_class.venue_id %>/course_c/<%= @course_class.id %>">See Class</a>
-<a href="/venues/<%= @course_class.venue_id %>">Back to Venue</a>
+<p class="text-confirm">You have successfully created a new class!</p>
 <% end %>

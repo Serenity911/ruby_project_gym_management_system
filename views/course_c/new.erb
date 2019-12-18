@@ -19,10 +19,10 @@ Create a class
   <input type="text" name="name" id="name">
 
   <label for="course_date">Class date: </label>
-  <input type="date" name="course_date" id="course_date">
+  <input type="date" min="<%= Date.today %>" max="<%= Date.today + 365 %>" name="course_date" id="course_date">
 
   <label for="max_capacity">Max Capacity: </label>
-  <input type="text" min= 1 name="max_capacity" id="max_capacity">
+  <input type="number" min= 1 name="max_capacity" id="max_capacity">
 
   <label for="membership_id">Membership required:</label>
   <select class="" name="membership_id">

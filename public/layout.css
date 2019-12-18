@@ -128,3 +128,7 @@ border: solid thin #2b3752;
 #notext{
 display: none;
 }
+
+.text-confirm {
+  color: green;
+}
