@@ -68,7 +68,7 @@ Delete this class
         <% for member in @members_signed_in %>
         <div class = "table_row">
           <div class="entry_row">
-            <a  href=""><%= member.name() %></a>
+            <a  href="/members/<%= member.id  %>"><%= member.name() %></a>
           </div>
           <div class="entry_row">
             <form  action="/venues/<%= @class.venue_id %>/course_c/<%= @class.id %>/cancel_booking/<%= member.id %>" method="post">
