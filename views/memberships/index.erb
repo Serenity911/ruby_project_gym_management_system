@@ -1,0 +1,17 @@
+
+
+<table style="width:100%">
+  <tr>
+    <th>Membership name</th>
+    <th>Membership price</th>
+    <th>Venues</th>
+  </tr>
+  <% for membership in @memberships %>
+  <tr>
+    <td><%= membership.name %> </td>
+    <td><%= membership.price %> </td>
+    <td>Venue1</td>
+  </tr>
+  <% end %>
+
+</table>
