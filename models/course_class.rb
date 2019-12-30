@@ -14,7 +14,6 @@ class CourseClass
     @max_capacity = options['max_capacity'].to_i
     @venue_id = options['venue_id'].to_i
     @membership_id = options['membership_id'].to_i
-    # add days of week
     # add instructors
   end
 

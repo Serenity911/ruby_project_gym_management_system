@@ -13,9 +13,6 @@ class Member
     @name = options['name']
     @status = options['status']
     @membership_id = options['membership_id'].to_i
-    # add date
-    # add days of week
-    # add instructors
   end
 
   # create a member

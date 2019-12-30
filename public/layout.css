@@ -26,9 +26,7 @@ font-size: 1rem;
 }
 
 .light_text, .light_text:active, .light_text:visited, .light_text:link  {
-  /* border-style: solid;
-  border-color: #2b3752;
-  border-width: 1%; */
+
   padding: 0.5rem;
   color: #e3f1ff;
 }
@@ -72,7 +70,6 @@ a.light_text:hover  {
 }
 
 .square_main {
-  /* border: solid thin #2b3752; */
   padding: 15%;
 
 }
@@ -81,13 +78,11 @@ a.light_text:hover  {
   justify-content: space-around;
   border-top: solid thin #2b3752;
   text-align: center;
-  /* margin-top: 2%; */
   background-color:  #1c1e4f;
 }
 
 .footer_list{
   display: flex;
-  /* flex-direction: column; */
   background-color:  #1c1e4f;
   justify-content: space-between;
   padding: 0 4%;
