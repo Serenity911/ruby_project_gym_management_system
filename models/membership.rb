@@ -10,7 +10,7 @@ class Membership
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @price = options['price'].to_i
-
+	# add a many to many with venue
   end
 
   # create a membership
@@ -37,7 +37,7 @@ class Membership
   def self.all()
     sql = "SELECT * FROM memberships"
     results = SqlRunner.run( sql )
-    return results.map{|membership| Member.new( membership)}
+    return results.map{|membership| Membership.new( membership)}
   end
 
   # delete one membership
@@ -55,5 +55,28 @@ class Membership
     values = [name]
     return SqlRunner.run( sql, values ).first['id'].to_i
   end
+
+  # find by id
+  def self.find( id )
+    sql = " SELECT * FROM memberships WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run( sql, values )
+    return Membership.new( result.first )
+  end
+
+  # update one membership
+
+  def update()
+    sql = "UPDATE memberships SET (
+    name, price
+    ) = (
+    $1, $2
+    )
+    WHERE id = $3
+    "
+    values = [@name, @price, @id]
+    SqlRunner.run( sql, values )
+  end
+
 
 end
