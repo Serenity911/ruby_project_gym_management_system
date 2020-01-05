@@ -27,8 +27,11 @@ Archive | Delete
         <h3> Member attendance:</h3>
         <% for lesson in @member.attendance() %>
         <div class="footer_list">
+          <div class="square_footer">
           <p class="light_text"><%= lesson.name %></p>
           <p class="light_text"><%= lesson.course_date %></p>
+        </div>
+
         </div>
         <% end  %>
       <% end  %>

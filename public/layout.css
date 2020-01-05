@@ -29,10 +29,15 @@ font-size: 1rem;
 
   padding: 0.5rem;
   color: #e3f1ff;
+
 }
 
 a.light_text:hover  {
   background-color: #333459;
+}
+
+a.light_text  {
+  color: #e3f1ff;
 }
 
 .menu > .light_text {
@@ -84,8 +89,11 @@ a.light_text:hover  {
 .footer_list{
   display: flex;
   background-color:  #1c1e4f;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
   padding: 0 4%;
+  text-align: center;
+
 }
 
 .text-alert {

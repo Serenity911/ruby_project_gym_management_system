@@ -1,0 +1,40 @@
+.table-list {
+   border-collapse: collapse;
+   border: solid black thin;
+   width:60%;
+    margin-left:20%;
+    margin-right:20%;
+
+}
+
+tr:first-of-type {
+  background-color: #cdd9ec;
+  color: black;
+}
+
+tr:first-of-type:hover {
+  background-color: #cdd9ec;
+}
+
+
+tr {
+  background-color: #090b3d;
+  color: #e3f1ff;
+}
+
+tr:hover {
+  background-color: #333459;
+
+}
+
+.table-list a {
+  color: #e3f1ff;
+  text-decoration: none;
+}
+
+
+/*
+sm-single-column {
+  border-collapse: collapse;
+  border: solid black thin;
+} */
