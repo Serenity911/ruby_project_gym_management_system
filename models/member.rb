@@ -5,25 +5,25 @@ require_relative( "./membership" )
 class Member
 
   attr_reader :id
-  attr_accessor :name, :status, :membership_id
+  attr_accessor :name, :status
 
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @status = options['status']
-    @membership_id = options['membership_id'].to_i
+    # @membership_id = options['membership_id'].to_i
   end
 
   # create a member
 
   def save()
     sql = "INSERT INTO members
-    (name, status, membership_id)
+    (name, status)
     VALUES
-    ($1, $2, $3)
+    ($1, $2)
     RETURNING id"
-    values = [@name, @status, @membership_id]
+    values = [@name, @status]
     @id = SqlRunner.run( sql, values ).first['id'].to_i
   end
 
@@ -54,13 +54,13 @@ class Member
 
   def update()
     sql = "UPDATE members SET (
-    name, status, membership_id
+    name, status
     ) = (
-    $1, $2, $3
+    $1, $2
     )
-    WHERE id = $4
+    WHERE id = $3
     "
-    values = [@name, @status, @membership_id, @id]
+    values = [@name, @status, @id]
     SqlRunner.run( sql, values )
   end
 
@@ -115,20 +115,70 @@ class Member
 
   end
 
+#
   def self.all_by_membership(status, membership_id)
-      # sql = "SELECT * FROM members WHERE membership = $1"
-      # values = [membership]
-      # results = SqlRunner.run( sql, values )
-      # return results.map{|member| Member.new( member )}
-      @all_by_status = Member.all_by_status(status)
-      @members_status_membership = []
-      for one in @all_by_status
-        if one.membership_id == membership_id
-          @members_status_membership << one
-        end
-      end
-      return @members_status_membership
+    sql = "SELECT * FROM memberships_members
+    INNER JOIN members
+    ON members.id = memberships_members.member_id
+    WHERE memberships_members.membership_id = $1 AND members.status = $2;
+    "
+    values = [membership_id, status]
+    results = SqlRunner.run( sql, values )
+    return results.map{|member| Member.new( member )}
+
+      # # sql = "SELECT * FROM members WHERE membership = $1"
+      # # values = [membership]
+      # # results = SqlRunner.run( sql, values )
+      # # return results.map{|member| Member.new( member )}
+      # @all_by_status = Member.all_by_status(status)
+      # @members_status_membership = []
+      # for one in @all_by_status
+      #   if one.membership_id == membership_id
+      #     @members_status_membership << one
+      #   end
+      # end
+      # return @members_status_membership
   end
+
+# add membership
+  def add_membership(membership)
+    return if membership.deactivated == 1
+    sql = "INSERT INTO memberships_members
+    (membership_id, member_id)
+    VALUES
+    ($1, $2);"
+    values = [membership.id, @id]
+    results = SqlRunner.run( sql, values )
+  end
+
+# remove membership
+  def remove_membership(membership)
+    return if has_membership?.nil
+    sql = "DELETE FROM memberships_members
+    WHERE membership_id = $1 AND member_id = $2;"
+    values = [membership.id, @id]
+    results = SqlRunner.run( sql, values )
+  end
+
+# check if member has membership
+# check in memberships_members if member has membership
+  def has_membership?(membership)
+     sql = "SELECT * FROM memberships_members
+     WHERE membership_id = $1 AND member_id = $2;"
+     values = [membership.id, @id]
+     results = SqlRunner.run( sql, values )
+     return !results.nil?
+     # if results != nil
+     #   true
+     # else
+     #   false
+     # end
+  end
+
+# or
+# all_by_membership.find{ |x| x.id  == @id}
+#
+
 
   def self.all_bookable(course_class, status, membership_id)
       @all_membership = Member.all_by_membership(status, membership_id)
@@ -142,15 +192,19 @@ class Member
       return @all_bookable
   end
 
+  # todo check if useful
 
-  def membership()
-    sql = "SELECT memberships.name FROM memberships
+  def get_membership()
+    sql = "SELECT memberships.* FROM memberships
+    INNER JOIN memberships_members
+    ON memberships_members.membership_id = memberships.id
     INNER JOIN members
-    ON members.membership_id = memberships.id
-    WHERE members.membership_id = $1
+    ON memberships_members.member_id = members.id
+    WHERE members.id = $1
     ;"
-    values = [@membership_id]
-    return SqlRunner.run( sql, values ).first['name']
+    values = [@id]
+    results = SqlRunner.run( sql, values )
+    return Membership.new(results.first)
   end
 
 end

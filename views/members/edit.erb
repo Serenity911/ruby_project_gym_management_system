@@ -3,7 +3,7 @@
 <form action="/members/<%= @member.id %>" method="post">
 <label for="name"></label>
   <input type="text" name="name" id="name" value="<%= @member.name %>">
-  
+
   <label for="status">Status:</label>
   <select name="status">
 
@@ -25,7 +25,7 @@
   <label for="membership_id">Membership required:</label>
   <select class="" name="membership_id">
   <% for membership in @memberships %>
-      <option value="<%= membership.id %>" <% if @member.membership_id == membership.id %>Selected<% end %>><%= membership.name %></option>
+      <option value="<%= membership.id %>" <% if @member.get_membership.id == membership.id %>Selected<% end %>><%= membership.name %></option>
   <% end %>
     </select>
 

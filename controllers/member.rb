@@ -69,7 +69,7 @@ end
 post '/members/:id/archive' do
   @member = Member.find(params['id'])
   @member.archive()
-  redirect back
+  redirect to("/members/#{params['id']}")
 end
 
 # reactivate

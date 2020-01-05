@@ -101,10 +101,7 @@ class CourseClass
     return members_count() < @max_capacity
   end
 
-  # check membership
-  def correct_membership?(member)
-    return member.membership_id == @membership_id
-  end
+
 
   # add to class tracker
   def add_member(member)
@@ -130,7 +127,7 @@ class CourseClass
   def book_member(member)
     return if !availability?()
     return if !member.active?()
-    return if !correct_membership?(member)
+    return if !member.has_membership?(self.membership)
     return if member_booked_in?(member)
     add_member(member)
   end
@@ -181,13 +178,14 @@ class CourseClass
   end
 
   def membership()
-    sql = "SELECT memberships.name FROM memberships
+    sql = "SELECT memberships.* FROM memberships
     INNER JOIN course_classes
     ON course_classes.membership_id = memberships.id
     WHERE course_classes.membership_id = $1
     ;"
     values = [@membership_id]
-    return SqlRunner.run( sql, values ).first['name']
+    results = SqlRunner.run( sql, values )
+    return Membership.new(results.first)
   end
 
   def week_availability?

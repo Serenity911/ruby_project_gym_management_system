@@ -50,19 +50,14 @@ post '/memberships/:id/delete' do
   @membership.destroy()
   redirect to("memberships/")
 end
-#
-# # delete >> archive or delete
-# get '/memberships/:id/archive_or_delete' do
-#   @membership = Membership.find(params['id'])
-#   erb(:"memberships/archive_or_delete")
-# end
-#
-# # delete >> archive
-# post '/memberships/:id/archive' do
-#   @membership = Membership.find(params['id'])
-#   @membership.archive()
-#   redirect back
-# end
+
+
+# deactivate
+post '/memberships/:id/deactivate' do
+  @membership = Membership.find(params['id'])
+  @membership.deactivate()
+  redirect back
+end
 #
 # # reactivate
 #

@@ -31,7 +31,7 @@ Archive | Delete
     <p  class="square_main"><%= @member.name %></p>
     <div class="square_footer">
       <p class="light_text">Status: <%= @member.status %></p>
-      <p class="light_text">Membership: <%= @member.membership %></p>
+      <p class="light_text">Membership: <%= @member.get_membership.name %></p>
     </div>
   </li>
 </ul>

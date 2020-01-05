@@ -3,14 +3,14 @@ require_relative( "../db/sql_runner" )
 class Membership
 
   attr_reader :id
-  attr_accessor :name, :price
+  attr_accessor :name, :price, :deactivated
 
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @price = options['price'].to_i
-	# add a many to many with venue
+    @deactivated = options['deactivated']
   end
 
   # create a membership
@@ -70,11 +70,19 @@ class Membership
     sql = "UPDATE memberships SET (
     name, price
     ) = (
-    $1, $2
+      $1, $2
     )
     WHERE id = $3
     "
     values = [@name, @price, @id]
+    SqlRunner.run( sql, values )
+  end
+
+
+  # deactivate a membership
+  def deactivate()
+    sql = "UPDATE memberships SET deactivated = 1 WHERE id = $1;"
+    values = [@id]
     SqlRunner.run( sql, values )
   end
 

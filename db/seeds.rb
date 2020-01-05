@@ -108,83 +108,89 @@ course_class5.save()
 
 member1 = Member.new({
   'name' => 'Jenny',
-  'status' => 'active',
-  'membership_id' => membership1.id
+  'status' => 'active'
   })
 
 member1.save()
 
+member1.add_membership(membership1)
+
 member2 = Member.new({
   'name' => 'Paul',
-  'status' => 'active',
-  'membership_id' => membership2.id
+  'status' => 'active'
   })
 
 member2.save()
+member2.add_membership(membership2)
 
 member3 = Member.new({
   'name' => 'John',
-  'status' => 'active',
-  'membership_id' => membership1.id
+  'status' => 'active'
   })
 
 member3.save()
+member3.add_membership(membership1)
 
 member4 = Member.new({
   'name' => 'Karolina',
-  'status' => 'active',
-  'membership_id' => membership1.id
+  'status' => 'active'
   })
 
 member4.save()
+member4.add_membership(membership1)
+
 
 member5 = Member.new({
   'name' => 'Bill',
-  'status' => 'active',
-  'membership_id' => membership1.id
+  'status' => 'active'
   })
 
 member5.save()
+member5.add_membership(membership1)
 
 member6 = Member.new({
   'name' => 'Stuart',
-  'status' => 'archived',
-  'membership_id' => membership2.id
+  'status' => 'archived'
   })
 
 member6.save()
+member6.add_membership(membership2)
+
 
 member7 = Member.new({
   'name' => 'Frodo',
-  'status' => 'paused',
-  'membership_id' => membership2.id
+  'status' => 'paused'
   })
 
 member7.save()
+member7.add_membership(membership2)
+
 
 member8 = Member.new({
   'name' => 'Sam',
-  'status' => 'paused',
-  'membership_id' => membership2.id
+  'status' => 'paused'
   })
 
 member8.save()
+member8.add_membership(membership2)
+
 
 member9 = Member.new({
   'name' => 'Julie',
-  'status' => 'archived',
-  'membership_id' => membership2.id
+  'status' => 'archived'
   })
 
 member9.save()
+member9.add_membership(membership2)
+
 
 member10 = Member.new({
   'name' => 'Smeagol',
-  'status' => 'archived',
-  'membership_id' => membership2.id
+  'status' => 'archived'
   })
 
 member10.save()
+member10.add_membership(membership2)
 
 # binding.pry
 #
