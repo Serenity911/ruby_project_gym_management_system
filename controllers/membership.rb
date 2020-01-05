@@ -28,6 +28,7 @@ end
 # show membership details
 get '/memberships/:id' do
   @membership = Membership.find(params['id'])
+	@course_classes = @membership.get_courseclass()
   erb(:"memberships/show")
 end
 
@@ -44,6 +45,14 @@ post '/memberships/:id' do
   redirect to("/memberships/#{params['id']}")
 end
 
+# delete or deactivate
+get '/memberships/:id/delete_deactivate' do
+	@memberships = Membership.all()
+	@membership = Membership.find(params['id'])
+	erb(:"memberships/delete_deactivate")
+end
+
+
 # delete >> destroy
 post '/memberships/:id/delete' do
   @membership = Membership.find(params['id'])
@@ -58,11 +67,17 @@ post '/memberships/:id/deactivate' do
   @membership.deactivate()
   redirect back
 end
-#
-# # reactivate
-#
-# post '/memberships/:id/reactivate' do
-#   @membership = Membership.find(params['id'])
-#   @membership.reactivate()
-#   redirect back
-# end
+
+# reactivate
+
+post '/memberships/:id/reactivate' do
+  @membership = Membership.find(params['id'])
+  @membership.reactivate()
+  redirect back
+end
+
+# show deactivated
+get '/memberships/filter/deactivated' do
+	@memberships = Membership.all()
+	erb(:"memberships/index_deactivated")
+end

@@ -3,23 +3,23 @@ require_relative( "../db/sql_runner" )
 class Membership
 
   attr_reader :id
-  attr_accessor :name, :price, :deactivated
+  attr_accessor :name, :price, :active
 
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @price = options['price'].to_i
-    @deactivated = options['deactivated']
+    @active = options['active'].to_i
   end
 
   # create a membership
 
   def save()
     sql = "INSERT INTO memberships
-    (name, price)
+    (name, price, active)
     VALUES
-    ($1, $2)
+    ($1, $2, 1)
     RETURNING id"
     values = [@name, @price]
     @id = SqlRunner.run( sql, values ).first['id'].to_i
@@ -68,23 +68,37 @@ class Membership
 
   def update()
     sql = "UPDATE memberships SET (
-    name, price
+    name, price, active
     ) = (
-      $1, $2
+      $1, $2, $3
     )
-    WHERE id = $3
+    WHERE id = $4
     "
-    values = [@name, @price, @id]
+    values = [@name, @price, @active, @id]
     SqlRunner.run( sql, values )
   end
 
 
   # deactivate a membership
   def deactivate()
-    sql = "UPDATE memberships SET deactivated = 1 WHERE id = $1;"
+    sql = "UPDATE memberships SET active = 0 WHERE id = $1;"
     values = [@id]
     SqlRunner.run( sql, values )
   end
 
+  # deactivate a membership
+  def reactivate()
+    sql = "UPDATE memberships SET active = 1 WHERE id = $1;"
+    values = [@id]
+    SqlRunner.run( sql, values )
+  end
+
+  # list of classes with membership
+  def get_courseclass()
+    sql = "SELECT * FROM course_classes WHERE membership_id =$1"
+    values = [@id]
+    results = SqlRunner.run( sql, values )
+    return results.map{|course_c| CourseClass.new(course_c)}
+  end
 
 end

@@ -1,10 +1,47 @@
+<% content_for :submenu1 do %>
+/memberships/<%= @membership.id %>/edit
+<% end %>
+<% content_for :submenu1text do %>
+Edit
+<% end %>
+<% content_for :submenu2 do %>
+/memberships/<%= @membership.id %>/delete_deactivate
+<% end %>
+<% if @membership.active == 1 %>
+  <% content_for :submenu2text do %>
+  Delete | Deactivate
+  <% end %>
+<% else %>
+  <% content_for :submenu2text do %>
+  Delete | Reactivate
+  <% end %>
+<% end %>
+
 <h1>Membership details:</h1>
 
 <ul class = "box_of_squares">
   <li class = "square">
     <p  class="square_main"><%= @membership.name %></p>
     <div class="square_footer">
-      <p class="light_text">Status: <%= @membership.price %></p>
+      <p class="light_text">Price: <%= @membership.price %></p>
+      <p class="light_text">Status:
+        <% if @membership.active == 1  %>
+        Active
+        <% else %>
+        Deactivated
+        <% end %>
+      </p>
     </div>
   </li>
 </ul>
+
+<table class="sm-single-column">
+  <tr>
+    <th>Class Name</th>
+  </tr>
+  <% for course_c in @course_classes %>
+  <tr>
+    <td><%= course_c.name %></td>
+  </tr>
+  <% end %>
+</table>

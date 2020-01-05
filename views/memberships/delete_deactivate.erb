@@ -1,0 +1,38 @@
+<% content_for :submenu1 do %>
+/memberships/<%= @membership.id %>
+<% end %>
+<% content_for :submenu1text do %>
+Back
+<% end %>
+
+<% if @membership.active  == 0 %>
+	<div>
+		<h2>Reactivate this membership</h2>
+		<form action="/memberships/<%= @membership.id %>/reactivate" method="post">
+			<input type="submit"value="Reactivate">
+		</form>
+	</div>
+<% else %>
+	<div>
+		<h2>Deactivate this membership</h2>
+		<form action="/memberships/<%= @membership.id %>/deactivate" method="post">
+		  <input type="submit"value="Deactivate">
+		</form>
+	</div>
+<% end %>
+
+<div>
+	<h2 class= "text-alert">Delete cannot be recovered</h2>
+<form action="/memberships/<%= @membership.id %>/delete" method="post">
+  <input type="submit"value="Delete">
+</form>
+</div>
+
+<ul class = "box_of_squares">
+  <li class = "square">
+    <p  class="square_main"><%= @membership.name %></p>
+    <div class="square_footer">
+      <p class="light_text">Price: <%= @membership.price %></p>
+    </div>
+  </li>
+</ul>

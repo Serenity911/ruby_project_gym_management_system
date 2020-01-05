@@ -1,3 +1,16 @@
+<% content_for :submenu1 do %>
+/memberships/?
+<% end %>
+<% content_for :submenu1text do %>
+Show all
+<% end %>
+<% content_for :submenu2 do %>
+/memberships/<%= @membership.id %>/delete_deactivate
+<% end %>
+<% content_for :submenu2text do %>
+Delete | Deactivate
+<% end %>
+
 <h1>Edit this new membership</h1>
 
 

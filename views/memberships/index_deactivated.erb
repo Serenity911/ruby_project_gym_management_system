@@ -1,8 +1,8 @@
 <% content_for :submenu1 do %>
-/memberships/filter/deactivated
+/memberships/?
 <% end %>
 <% content_for :submenu1text do %>
-Show deactivated
+Show Active
 <% end %>
 <% content_for :submenu2 do %>
 /memberships/new
@@ -11,14 +11,14 @@ Show deactivated
 Create new membership
 <% end %>
 
-<h2>Active memberships</h2>
+<h2>Deactivated memberships</h2>
 <table style="width:100%">
   <tr>
     <th>Membership name</th>
     <th>Membership price</th>
   </tr>
   <% for membership in @memberships %>
-    <% if membership.active == 1 %>
+    <% if membership.active == 0 %>
       <tr>
         <td> <a href="/memberships/<%= membership.id %>"><%= membership.name %> </a></td>
         <td><%= membership.price %> </td>

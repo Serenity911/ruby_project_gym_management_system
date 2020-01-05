@@ -16,7 +16,7 @@ CREATE TABLE memberships (
   id SERIAL primary key,
   name VARCHAR(255) NOT NULL,
   price INT,
-  deactivated BOOLEAN
+  active INT
 );
 
 CREATE TABLE course_classes (
