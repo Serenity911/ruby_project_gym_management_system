@@ -141,13 +141,13 @@ class Member
   end
 
 # add membership
-  def add_membership(membership)
-    return if membership.deactivated == 1
+  def add_membership(membership_id)
+    # return if membership.deactivated == 1
     sql = "INSERT INTO memberships_members
     (membership_id, member_id)
     VALUES
     ($1, $2);"
-    values = [membership.id, @id]
+    values = [membership_id, @id]
     results = SqlRunner.run( sql, values )
   end
 

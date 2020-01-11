@@ -30,6 +30,7 @@ end
 post '/members' do
   member = Member.new(params)
   member.save()
+  member.add_membership(params['membership_id'])
   redirect to("members/")
 end
 
