@@ -14,12 +14,18 @@ Delete | Deactivate
 <h1>Edit this new membership</h1>
 
 
-<form action="/memberships/<%= @membership.id %>"" method="post">
+<form action="/memberships/<%= @membership.id %>" method="post">
 <label for="name">Membership name: </label>
   <input type="text" name="name" id="name" value="<%= @membership.name %>">
 
-  <label for="status">Membership price:</label>
+  <label for="price">Membership price:</label>
   <input type="number" name="price" id="price"  value="<%= @membership.price %>">
+
+  <label for="status">Membership status:</label>
+  <select name="active" id="status">
+        <option value="0"  <% if @membership.active == 0 %>Selected<% end %>>Deactivated</option>
+        <option value="1"  <% if @membership.active == 1 %>Selected<% end %>>Active</option>
+  </select>
 
   <input class="" type='submit' value="Submit!">
 </form>
