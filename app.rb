@@ -7,5 +7,6 @@ require_relative('controllers/venue')
 require('pry')
 
 get '/' do
+
   erb( :index )
 end
