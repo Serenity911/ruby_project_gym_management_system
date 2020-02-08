@@ -5,14 +5,7 @@
 Back
 <% end %>
 
-<% if @membership.active  == 0 %>
-	<div>
-		<h2>Reactivate this membership</h2>
-		<form action="/memberships/<%= @membership.id %>/reactivate" method="post">
-			<input type="submit"value="Reactivate">
-		</form>
-	</div>
-<% else %>
+<% if @membership.active  == 1 %>
 	<div>
 		<h2>Deactivate this membership</h2>
 		<form action="/memberships/<%= @membership.id %>/deactivate" method="post">
