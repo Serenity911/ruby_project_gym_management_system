@@ -65,7 +65,7 @@ end
 post '/memberships/:id/deactivate' do
   @membership = Membership.find(params['id'])
   @membership.deactivate()
-  redirect back
+	redirect to("/memberships/#{params['id']}")
 end
 
 # reactivate
@@ -73,7 +73,7 @@ end
 post '/memberships/:id/reactivate' do
   @membership = Membership.find(params['id'])
   @membership.reactivate()
-  redirect back
+	redirect to("/memberships/#{params['id']}")
 end
 
 # show deactivated
