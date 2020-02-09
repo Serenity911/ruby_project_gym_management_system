@@ -44,14 +44,16 @@ venue4.save()
 
 membership1 = Membership.new({
   'name' => "Gold",
-  'price' => 20
+  'price' => 20,
+  'active' => 1
   })
 
 membership1.save()
 
 membership2 = Membership.new({
   'name' => "Silver",
-  'price' => 10
+  'price' => 10,
+  'active' => 1
   })
 
 membership2.save()
@@ -113,7 +115,7 @@ member1 = Member.new({
 
 member1.save()
 
-member1.add_membership(membership1)
+member1.add_membership(membership1.id)
 
 member2 = Member.new({
   'name' => 'Paul',
@@ -121,7 +123,7 @@ member2 = Member.new({
   })
 
 member2.save()
-member2.add_membership(membership2)
+member2.add_membership(membership2.id)
 
 member3 = Member.new({
   'name' => 'John',
@@ -129,7 +131,7 @@ member3 = Member.new({
   })
 
 member3.save()
-member3.add_membership(membership1)
+member3.add_membership(membership1.id)
 
 member4 = Member.new({
   'name' => 'Karolina',
@@ -137,7 +139,7 @@ member4 = Member.new({
   })
 
 member4.save()
-member4.add_membership(membership1)
+member4.add_membership(membership1.id)
 
 
 member5 = Member.new({
@@ -146,7 +148,7 @@ member5 = Member.new({
   })
 
 member5.save()
-member5.add_membership(membership1)
+member5.add_membership(membership1.id)
 
 member6 = Member.new({
   'name' => 'Stuart',
@@ -154,7 +156,7 @@ member6 = Member.new({
   })
 
 member6.save()
-member6.add_membership(membership2)
+member6.add_membership(membership2.id)
 
 
 member7 = Member.new({
@@ -163,7 +165,7 @@ member7 = Member.new({
   })
 
 member7.save()
-member7.add_membership(membership2)
+member7.add_membership(membership2.id)
 
 
 member8 = Member.new({
@@ -172,7 +174,7 @@ member8 = Member.new({
   })
 
 member8.save()
-member8.add_membership(membership2)
+member8.add_membership(membership2.id)
 
 
 member9 = Member.new({
@@ -181,7 +183,7 @@ member9 = Member.new({
   })
 
 member9.save()
-member9.add_membership(membership2)
+member9.add_membership(membership2.id)
 
 
 member10 = Member.new({
@@ -190,7 +192,7 @@ member10 = Member.new({
   })
 
 member10.save()
-member10.add_membership(membership2)
+member10.add_membership(membership2.id)
 
 # binding.pry
 #
